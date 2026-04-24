@@ -437,17 +437,21 @@ def desenhar_bombas(bombas):
 
                 screen.blit(pygame.transform.scale(frame, (TILE_SIZE, TILE_SIZE)), (pos_x, pos_y))
 
+mod1 = "ia_jogador1"
+mod2 = "ia_jogador2"
+mod3 = "ia_jogador3"
+mod4 = "ia_jogador4"
 
-p1 = "ia_jogador1"
-p2 = "ia_jogador2"
-p3 = "ia_jogador3"
-p4 = "ia_jogador4"
+p1 = "Gambeta"
+p2 = "Vladimir_Puttin"
+p3 = "Osama_bin_laden"
+p4 = "Donald_Trump"
 p5 = "ia_jogador1"
 
-ia_1 = importlib.import_module(p1).decidir_acao
-ia_2 = importlib.import_module(p2).decidir_acao
-ia_3 = importlib.import_module(p3).decidir_acao
-ia_4 = importlib.import_module(p4).decidir_acao
+ia_1 = importlib.import_module(mod1).decidir_acao
+ia_2 = importlib.import_module(mod2).decidir_acao
+ia_3 = importlib.import_module(mod3).decidir_acao
+ia_4 = importlib.import_module(mod4).decidir_acao
 ia_5 = importlib.import_module(p5).decidir_acao
 
 players = [
@@ -556,7 +560,10 @@ while True:
 
                         else:
                             pontos[players.index(b.dono)] += PONTOS_MATAR_JOGADOR
-                        print(f"Jogador {players.index(p)+1} morreu!")
+                        nomes = [p1, p2, p3, p4]
+
+                        nome = nomes[players.index(p)]
+                        print(f"{nome} morreu!")
 
     if vencedor_final is None:
         vivos = [p for p in players if p.ativo]
