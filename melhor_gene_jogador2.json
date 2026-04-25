@@ -1,10 +1,10 @@
 {
     "gene": {
-        "tempo_fuga": 48,
-        "chance_bomba": 0.15,
+        "tempo_fuga": 41,
+        "chance_bomba": 0.12,
         "margem_seguranca": 0
     },
-    "media_pontos": 6433.333333333333,
-    "vitorias": 5,
-    "fitness": 16433.333333333332
+    "media_pontos": 11333.333333333334,
+    "vitorias": 3,
+    "fitness": 17333.333333333336
 }

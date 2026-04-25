@@ -3,11 +3,15 @@ import random
 import subprocess
 import os
 import time
+import csv
+import matplotlib.pyplot as plt
 
 ARQUIVO_RESULTADO = "resultado_treino.json"
+ARQUIVO_RELATORIO_JSON = "relatorio_treino.json"
+ARQUIVO_RELATORIO_CSV = "relatorio_treino.csv"
+ARQUIVO_GRAFICO = "grafico_treino.png"
 
 JOGADORES = [1, 2, 3, 4]
-
 TAMANHO_POPULACAO = 10
 
 TEMPO_FUGA_MIN = 15
@@ -15,7 +19,6 @@ TEMPO_FUGA_MAX = 55
 
 CHANCE_BOMBA_MIN = 0.08
 CHANCE_BOMBA_MAX = 0.35
-
 
 MARGEM_MIN = 0
 MARGEM_MAX = 3
@@ -50,9 +53,6 @@ def arquivo_melhor(jogador):
     return f"melhor_gene_jogador{jogador}.json"
 
 
-# =========================
-# GENE COMPLETO
-# =========================
 def criar_gene():
     return {
         "tempo_fuga": random.randint(TEMPO_FUGA_MIN, TEMPO_FUGA_MAX),
@@ -129,9 +129,6 @@ def avaliar_genes(genes_por_jogador):
     return avaliacoes
 
 
-# =========================
-# MUTAÇÃO COMPLETA
-# =========================
 def mutar(gene):
     novo = gene.copy()
 
@@ -152,24 +149,99 @@ def mutar(gene):
 
     return novo
 
+
 def cruzar(g1, g2):
     filho = {
         "tempo_fuga": random.choice([g1["tempo_fuga"], g2["tempo_fuga"]]),
         "chance_bomba": random.choice([g1["chance_bomba"], g2["chance_bomba"]]),
         "margem_seguranca": random.choice([g1["margem_seguranca"], g2["margem_seguranca"]])
     }
+
     return mutar(filho)
 
+
 def criar_populacoes():
-    return {j: [criar_gene() for _ in range(TAMANHO_POPULACAO)] for j in JOGADORES}
+    return {
+        jogador: [criar_gene() for _ in range(TAMANHO_POPULACAO)]
+        for jogador in JOGADORES
+    }
 
 
-# =========================
-# LOOP PRINCIPAL
-# =========================
+def salvar_relatorio_json(historico, melhores_gerais):
+    relatorio = {
+        "configuracao": {
+            "geracoes": GERACOES,
+            "partidas_por_gene": PARTIDAS_POR_GENE,
+            "tamanho_populacao": TAMANHO_POPULACAO,
+            "tempo_fuga_min": TEMPO_FUGA_MIN,
+            "tempo_fuga_max": TEMPO_FUGA_MAX,
+            "chance_bomba_min": CHANCE_BOMBA_MIN,
+            "chance_bomba_max": CHANCE_BOMBA_MAX,
+            "margem_min": MARGEM_MIN,
+            "margem_max": MARGEM_MAX
+        },
+        "historico": historico,
+        "melhores_gerais": melhores_gerais
+    }
+
+    with open(ARQUIVO_RELATORIO_JSON, "w") as f:
+        json.dump(relatorio, f, indent=4)
+
+
+def salvar_relatorio_csv(historico):
+    with open(ARQUIVO_RELATORIO_CSV, "w", newline="") as f:
+        writer = csv.writer(f)
+
+        writer.writerow([
+            "geracao",
+            "jogador",
+            "media_pontos",
+            "vitorias",
+            "fitness",
+            "tempo_fuga",
+            "chance_bomba",
+            "margem_seguranca"
+        ])
+
+        for item in historico:
+            gene = item["gene"]
+
+            writer.writerow([
+                item["geracao"],
+                item["jogador"],
+                item["media_pontos"],
+                item["vitorias"],
+                item["fitness"],
+                gene["tempo_fuga"],
+                gene["chance_bomba"],
+                gene["margem_seguranca"]
+            ])
+
+
+def gerar_grafico(historico):
+    plt.figure(figsize=(10, 6))
+
+    for jogador in JOGADORES:
+        dados = [h for h in historico if h["jogador"] == jogador]
+        geracoes = [h["geracao"] for h in dados]
+        fitness = [h["fitness"] for h in dados]
+
+        plt.plot(geracoes, fitness, marker="o", label=f"Jogador {jogador}")
+
+    plt.title("Evolução do Fitness por Geração")
+    plt.xlabel("Geração")
+    plt.ylabel("Fitness")
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(ARQUIVO_GRAFICO)
+    plt.close()
+
+
 def main():
     populacoes = criar_populacoes()
     melhores_gerais = {j: None for j in JOGADORES}
+    historico = []
 
     for geracao in range(1, GERACOES + 1):
         print(f"\n==== GERAÇÃO {geracao} ====")
@@ -179,30 +251,41 @@ def main():
         for i in range(TAMANHO_POPULACAO):
             genes_rodada = {j: populacoes[j][i] for j in JOGADORES}
 
-            print(f"\nTeste {i+1}")
+            print(f"\nTeste {i + 1}/{TAMANHO_POPULACAO}")
             print(genes_rodada)
 
             avaliacoes = avaliar_genes(genes_rodada)
 
-            for j, a in avaliacoes.items():
-                resultados_por_jogador[j].append(a)
+            for jogador, avaliacao in avaliacoes.items():
+                resultados_por_jogador[jogador].append(avaliacao)
 
-        for j in JOGADORES:
-            resultados = sorted(resultados_por_jogador[j], key=lambda r: r["fitness"], reverse=True)
+        for jogador in JOGADORES:
+            resultados = sorted(
+                resultados_por_jogador[jogador],
+                key=lambda r: r["fitness"],
+                reverse=True
+            )
 
             melhor = resultados[0]
 
-            if melhores_gerais[j] is None or melhor["fitness"] > melhores_gerais[j]["fitness"]:
-                melhores_gerais[j] = melhor
+            if melhores_gerais[jogador] is None or melhor["fitness"] > melhores_gerais[jogador]["fitness"]:
+                melhores_gerais[jogador] = melhor
 
-            # salva SEMPRE o melhor geral (corrigido)
-            salvar_gene(j, melhores_gerais[j]["gene"])
+            historico.append({
+                "geracao": geracao,
+                "jogador": jogador,
+                "gene": melhor["gene"],
+                "media_pontos": melhor["media_pontos"],
+                "vitorias": melhor["vitorias"],
+                "fitness": melhor["fitness"]
+            })
 
-            with open(arquivo_melhor(j), "w") as f:
-                json.dump(melhores_gerais[j], f, indent=4)
+            salvar_gene(jogador, melhores_gerais[jogador]["gene"])
+
+            with open(arquivo_melhor(jogador), "w") as f:
+                json.dump(melhores_gerais[jogador], f, indent=4)
 
             pais = [r["gene"] for r in resultados[:4]]
-
             nova_pop = pais.copy()
 
             while len(nova_pop) < TAMANHO_POPULACAO:
@@ -210,9 +293,28 @@ def main():
                 p2 = random.choice(pais)
                 nova_pop.append(cruzar(p1, p2))
 
-            populacoes[j] = nova_pop
+            populacoes[jogador] = nova_pop
+
+        salvar_relatorio_json(historico, melhores_gerais)
+        salvar_relatorio_csv(historico)
+        gerar_grafico(historico)
+
+        print("\nMelhores da geração:")
+        for jogador in JOGADORES:
+            ultimo = [h for h in historico if h["jogador"] == jogador][-1]
+            print(
+                f"Jogador {jogador}: "
+                f"fitness={ultimo['fitness']}, "
+                f"média={ultimo['media_pontos']}, "
+                f"vitórias={ultimo['vitorias']}, "
+                f"gene={ultimo['gene']}"
+            )
 
     print("\nTREINO FINALIZADO!")
+    print(f"Relatório JSON salvo em: {ARQUIVO_RELATORIO_JSON}")
+    print(f"Relatório CSV salvo em: {ARQUIVO_RELATORIO_CSV}")
+    print(f"Gráfico salvo em: {ARQUIVO_GRAFICO}")
+
 
 if __name__ == "__main__":
     main()
