@@ -1,7 +1,10 @@
 {
-    "tempo_fuga": 35,
-    "chance_bomba": 0.07,
-    "pontuacao": 11000,
-    "pontos_jogo": 10000,
-    "venceu": true
+    "gene": {
+        "tempo_fuga": 48,
+        "chance_bomba": 0.15,
+        "margem_seguranca": 0
+    },
+    "media_pontos": 6433.333333333333,
+    "vitorias": 5,
+    "fitness": 16433.333333333332
 }
