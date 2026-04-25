@@ -4,7 +4,9 @@ import importlib
 import random
 import hashlib
 import json
+import os
 
+MODO_TREINO = os.getenv("MODO_TREINO") == "1"
 def gerar_checksum_dados(obj):
     def simplificar(o):
         if isinstance(o, list):
@@ -51,7 +53,7 @@ TILE_SIZE = 48
 ROWS, COLS = 11, 13
 HUD_HEIGHT = 60
 WIDTH, HEIGHT = COLS * TILE_SIZE, ROWS * TILE_SIZE
-TEMPO_MOVIMENTO = 0.1
+TEMPO_MOVIMENTO = 0.25
 TEMPO_EXPLOSAO = 4
 TEMPO_FOGO = 0.5
 MAX_BOMBAS = 5
@@ -468,6 +470,7 @@ pontos = [0, 0, 0, 0, 0]
 tempo_restante = TEMPO_PARTIDA
 vencedor_final = None
 mensagem_vitoria = None
+resultado_salvo = False
 
 clock = pygame.time.Clock()
 fullscreen = False
@@ -592,17 +595,18 @@ while True:
         rect = texto.get_rect(center=(WIDTH // 2, HEIGHT // 2 + HUD_HEIGHT // 2))
         screen.blit(texto, rect)
     pygame.display.flip()
-
     if vencedor_final is not None:
-        # Apenas desenha a tela congelada com a mensagem
-        # screen.fill(COLOR_BG)
-        # desenhar_hud(pontos, tempo_restante)
-        # desenhar_mapa()
-        # desenhar_bombas(bombas)
-        # desenhar_jogadores(players)
-        if mensagem_vitoria:
-            texto = font_vitoria.render(mensagem_vitoria, True, (255, 255, 255))
-            rect = texto.get_rect(center=(WIDTH // 2, HEIGHT // 2 + HUD_HEIGHT // 2))
-            screen.blit(texto, rect)
-        pygame.display.flip()
-        continue  # pula o restante do loop para congelar o jogo
+
+        if MODO_TREINO and not resultado_salvo:
+            resultado = {
+                "pontos": pontos,
+                "vencedor": vencedor_final
+            }
+
+            with open("resultado_treino.json", "w") as f:
+                json.dump(resultado, f, indent=4)
+
+            resultado_salvo = True
+            pygame.quit()
+            sys.exit()
+            continue  # pula o restante do loop para congelar o jogo
