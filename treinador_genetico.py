@@ -223,10 +223,10 @@ def avaliar_genes(genes_por_jogador):
 
         # FITNESS MELHORADO
         fitness = media
-        fitness += vitorias * 2000
+        fitness += vitorias * 2500
         fitness += media_tempo_vivo * 8
-        fitness += kills_total * 700
-        fitness -= mortes_total * 300
+        fitness += kills_total * 900
+        fitness -= mortes_total * 800
 
         # Penaliza bomba demais sem resultado
         bombas_sem_resultado = max(0, bombas_total - (kills_total * 3))
@@ -239,6 +239,9 @@ def avaliar_genes(genes_por_jogador):
         # Penaliza morte muito rápida
         if media_tempo_vivo < 10:
             fitness -= 800
+
+        if mortes_total >= PARTIDAS_POR_GENE:
+            fitness -= 1500
 
         avaliacoes[jogador] = {
             "gene": genes_por_jogador[jogador],

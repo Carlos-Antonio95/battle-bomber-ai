@@ -864,10 +864,112 @@ def perseguir_inimigo(player, mapa, bombas, jogadores):
         return registrar_acao(player, opcoes[0][1])
 
     return None
+def inimigo_mais_proximo(player, jogadores):
+    alvo = None
+    menor_dist = None
+
+    for inimigo in jogadores:
+        if inimigo is player or not inimigo.ativo:
+            continue
+
+        dist = abs(player.grid_x - inimigo.grid_x) + abs(player.grid_y - inimigo.grid_y)
+
+        if menor_dist is None or dist < menor_dist:
+            menor_dist = dist
+            alvo = inimigo
+
+    return alvo, menor_dist
+
+
+def risco_de_cerco_real(player, mapa, bombas, jogadores):
+    saidas = contar_saidas_seguras(player.grid_x, player.grid_y, mapa, bombas)
+
+    # Se tem mais de uma saída, não está cercado
+    if saidas > 1:
+        return False
+
+    alvo, dist = inimigo_mais_proximo(player, jogadores)
+
+    inimigo_perto = dist is not None and dist <= 3
+    perigo_perto = existe_perigo_ativo(bombas)
+
+    # Só considera cerco se tiver ameaça real
+    return inimigo_perto or perigo_perto
+
+
+def inimigo_quase_preso(player, jogadores, mapa, bombas):
+    melhor_alvo = None
+    menor_dist = None
+
+    for inimigo in jogadores:
+        if inimigo is player or not inimigo.ativo:
+            continue
+
+        dist = abs(player.grid_x - inimigo.grid_x) + abs(player.grid_y - inimigo.grid_y)
+
+        # Não tenta prender inimigo muito longe
+        if dist > GENES.get("distancia_perseguir", 5):
+            continue
+
+        saidas = contar_saidas_seguras(inimigo.grid_x, inimigo.grid_y, mapa, bombas)
+
+        if saidas <= 1:
+            if menor_dist is None or dist < menor_dist:
+                menor_dist = dist
+                melhor_alvo = inimigo
+
+    return melhor_alvo
+
+
+def ataque_cerco(player, mapa, jogadores, bombas):
+    alvo = inimigo_quase_preso(player, jogadores, mapa, bombas)
+
+    if alvo is None:
+        return None
+
+    # Só ataca se tiver rota de fuga
+    if not tem_rota_fuga_apos_bomba(player, mapa, bombas):
+        return None
+
+    # Só joga bomba se o inimigo estiver alinhado ou perto o suficiente
+    dist = abs(player.grid_x - alvo.grid_x) + abs(player.grid_y - alvo.grid_y)
+
+    if dist <= player.bomba_nivel * 2 + 1:
+        memoria["fugindo"] = GENES.get("tempo_fuga", 35)
+        memoria["acabou_de_colocar_bomba"] = True
+        memoria["bomba_x"] = player.grid_x
+        memoria["bomba_y"] = player.grid_y
+        memoria["bomba_nivel"] = player.bomba_nivel
+        memoria["rota_fuga"] = []
+
+        return "bomba"
+
+    return None
+
+
+def perseguir_com_segurança(player, mapa, bombas, jogadores):
+    # Se o próprio jogador está quase preso, não persegue
+    if contar_saidas_seguras(player.grid_x, player.grid_y, mapa, bombas) <= 1:
+        return None
+
+    alvo, dist = inimigo_mais_proximo(player, jogadores)
+
+    if alvo is None:
+        return None
+
+    if dist > GENES.get("distancia_perseguir", 5):
+        return None
+
+    return perseguir_inimigo(player, mapa, bombas, jogadores)
 
 def ataque_basico(player, mapa, jogadores, bombas):
 
-    # 💣 ATAQUE DIRETO
+    # ATAQUE POR CERCO
+    acao_cerco = ataque_cerco(player, mapa, jogadores, bombas)
+    if acao_cerco:
+        return acao_cerco
+
+    # ATAQUE DIRETO
     if inimigo_no_raio(player, jogadores, mapa):
         if tem_rota_fuga_apos_bomba(player, mapa, bombas):
             if random.random() < GENES.get("chance_ataque", 0.20):
@@ -881,20 +983,19 @@ def ataque_basico(player, mapa, jogadores, bombas):
 
                 return "bomba"
 
-    # 🎯 PERSEGUIÇÃO
-    dist = distancia_inimigo_mais_proximo(player, jogadores)
+    # PERSEGUIÇÃO SEGURA
+    acao = perseguir_com_segurança(player, mapa, bombas, jogadores)
 
-    if dist is not None and dist <= GENES.get("distancia_perseguir", 5):
-        acao = perseguir_inimigo(player, mapa, bombas, jogadores)
-
-        if acao:
-            return acao
+    if acao:
+        return acao
 
     return None
 def decidir_acao(player, mapa, jogadores, bombas, tempo_restante, pontos, hud_info, self_state):
+    blocos_restantes = sum(linha.count(1) for linha in mapa)
+    modo_exploracao = tempo_restante > 120 or blocos_restantes > 35
     memoria["jogadores"] = jogadores
 
-    # Primeiro limpa a memória da bomba se ela já explodiu/sumiu
+    # Limpa memória da bomba se ela já explodiu/sumiu
     if memoria["bomba_x"] is not None and memoria["bomba_y"] is not None:
         bomba_ainda_existe = False
 
@@ -906,10 +1007,11 @@ def decidir_acao(player, mapa, jogadores, bombas, tempo_restante, pontos, hud_in
         if not bomba_ainda_existe:
             limpar_memoria_bomba()
 
-    # Mantém a última ação por pouco tempo apenas se não houver perigo.
-    # Isso reduz o loop de ficar subindo e descendo sem atrapalhar a fuga.
-    if not posicao_em_perigo(player.grid_x, player.grid_y, bombas, mapa) \
-       and not perigo_iminente(player, mapa, bombas):
+    # Anti-loop: mantém a última ação só quando não há perigo
+    # Anti-loop: só mantém movimento se NÃO houver perigo nem bomba ativa
+    if not existe_perigo_ativo(bombas) \
+    and not posicao_em_perigo(player.grid_x, player.grid_y, bombas, mapa) \
+    and not perigo_iminente(player, mapa, bombas):
 
         if memoria.get("manter_acao", 0) > 0:
             ultima = memoria.get("ultima_acao")
@@ -919,20 +1021,18 @@ def decidir_acao(player, mapa, jogadores, bombas, tempo_restante, pontos, hud_in
                 return ultima
             else:
                 memoria["manter_acao"] = 0
-
-    # EMERGÊNCIA REAL: só foge se a explosão estiver quase acontecendo
+    # 1. PERIGO REAL → FUGIR
     if perigo_iminente(player, mapa, bombas):
         memoria["fugindo"] = GENES.get("tempo_fuga", 35)
         memoria["rota_fuga"] = []
         return fugir_da_bomba(player, mapa, bombas)
 
-    # MODO FUGA
+    # 2. MODO FUGA ATIVO
     if memoria["fugindo"] > 0:
         memoria["fugindo"] -= 1
 
         if posicao_em_perigo(player.grid_x, player.grid_y, bombas, mapa) \
            or not distancia_segura_da_bomba(player.grid_x, player.grid_y, bombas):
-
             return fugir_da_bomba(player, mapa, bombas)
 
         if esconderijo_bom(player, mapa, bombas):
@@ -940,21 +1040,45 @@ def decidir_acao(player, mapa, jogadores, bombas, tempo_restante, pontos, hud_in
         else:
             return fugir_da_bomba(player, mapa, bombas)
 
-    # BUSCAR POWER-UP
-    acao_bfs = bfs_powerup(player, mapa, bombas)
-    if acao_bfs:
-        return acao_bfs
+    # 3. INÍCIO DO JOGO → ABRIR MAPA
+    # No começo, a prioridade é abrir caminho e pegar power-up.
+    if modo_exploracao:
+        acao_powerup = pegar_powerup_perto(player, mapa, bombas)
+        if acao_powerup:
+            return acao_powerup
 
+        if parede_destrutivel_perto(player, mapa) and tem_rota_fuga_apos_bomba(player, mapa, bombas):
+            chance_inicio = max(GENES.get("chance_bomba", 0.09), 0.25)
+
+            if random.random() < chance_inicio:
+                memoria["fugindo"] = GENES.get("tempo_fuga", 35)
+                memoria["acabou_de_colocar_bomba"] = True
+                memoria["bomba_x"] = player.grid_x
+                memoria["bomba_y"] = player.grid_y
+                memoria["bomba_nivel"] = player.bomba_nivel
+                memoria["rota_fuga"] = []
+                return "bomba"
+
+        acao_bfs = bfs_powerup(player, mapa, bombas)
+        if acao_bfs:
+            return acao_bfs
+
+        acao = movimento_aleatorio(player, mapa, bombas)
+        return registrar_acao(player, acao)
+
+    # 4. RISCO DE CERCO → SAIR
+    if risco_de_cerco_real(player, mapa, bombas, jogadores):
+        acao_fuga = fugir_da_bomba(player, mapa, bombas)
+
+        if acao_fuga:
+            return acao_fuga
+
+    # 5. PEGAR POWER-UP PRÓXIMO
     acao_powerup = pegar_powerup_perto(player, mapa, bombas)
     if acao_powerup:
         return acao_powerup
-    
-    # 🔥 ATAQUE BÁSICO
-    acao_ataque = ataque_basico(player, mapa, jogadores, bombas)
-    if acao_ataque:
-        return acao_ataque
 
-    # COLOCAR BOMBA
+    # 6. DESTRUIR BLOCO
     if parede_destrutivel_perto(player, mapa) and tem_rota_fuga_apos_bomba(player, mapa, bombas):
         if random.random() < GENES.get("chance_bomba", 0.09):
             memoria["fugindo"] = GENES.get("tempo_fuga", 35)
@@ -962,6 +1086,18 @@ def decidir_acao(player, mapa, jogadores, bombas, tempo_restante, pontos, hud_in
             memoria["bomba_x"] = player.grid_x
             memoria["bomba_y"] = player.grid_y
             memoria["bomba_nivel"] = player.bomba_nivel
+            memoria["rota_fuga"] = []
             return "bomba"
 
+    # 7. ATAQUE / PERSEGUIÇÃO
+    acao_ataque = ataque_basico(player, mapa, jogadores, bombas)
+    if acao_ataque:
+        return acao_ataque
+
+    # 8. POWER-UP DISTANTE
+    acao_bfs = bfs_powerup(player, mapa, bombas)
+    if acao_bfs:
+        return acao_bfs
+
+    # 9. MOVIMENTO NORMAL
     return movimento_aleatorio(player, mapa, bombas)

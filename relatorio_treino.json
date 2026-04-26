@@ -1,13 +1,13 @@
 {
     "configuracao": {
-        "geracoes": 10,
+        "geracoes": 6,
         "partidas_por_gene": 3,
         "tamanho_populacao": 10,
         "tempo_fuga_min": 10,
         "tempo_fuga_max": 80,
         "chance_bomba_min": 0.08,
         "chance_bomba_max": 0.5,
-        "margem_min": 0,
+        "margem_min": 1,
         "margem_max": 3,
         "cautela_bomba_min": 0.3,
         "cautela_bomba_max": 2.0,
@@ -15,387 +15,653 @@
         "chance_ataque_max": 0.6,
         "distancia_perseguir_min": 2,
         "distancia_perseguir_max": 7,
-        "tempo_perigo_iminente_min": 0.3,
-        "tempo_perigo_iminente_max": 1.2
+        "tempo_perigo_iminente_min": 0.45,
+        "tempo_perigo_iminente_max": 1.2,
+        "max_passos_fuga_min": 6,
+        "max_passos_fuga_max": 12,
+        "margem_tempo_base_min": 0.3,
+        "margem_tempo_base_max": 0.55,
+        "persistencia_movimento_min": 1,
+        "persistencia_movimento_max": 4
     },
     "historico": [
         {
             "geracao": 1,
             "jogador": 1,
             "gene": {
-                "tempo_fuga": 20,
-                "chance_bomba": 0.32,
-                "margem_seguranca": 3,
-                "cautela_bomba": 1.37,
-                "chance_ataque": 0.37,
-                "distancia_perseguir": 2,
-                "tempo_perigo_iminente": 0.38
-            },
-            "media_pontos": 766.6666666666666,
-            "vitorias": 0,
-            "fitness": 766.6666666666666
-        },
-        {
-            "geracao": 1,
-            "jogador": 2,
-            "gene": {
-                "tempo_fuga": 27,
-                "chance_bomba": 0.2,
+                "tempo_fuga": 10,
+                "chance_bomba": 0.4,
                 "margem_seguranca": 1,
-                "cautela_bomba": 0.34,
-                "chance_ataque": 0.59,
+                "cautela_bomba": 1.5,
+                "chance_ataque": 0.12,
                 "distancia_perseguir": 3,
-                "tempo_perigo_iminente": 0.78
+                "tempo_perigo_iminente": 1.09,
+                "max_passos_fuga": 9,
+                "margem_tempo_base": 0.43,
+                "persistencia_movimento": 3
             },
-            "media_pontos": 13183.333333333334,
-            "vitorias": 3,
-            "fitness": 19183.333333333336
+            "media_pontos": 8433.333333333334,
+            "vitorias": 2,
+            "tempo_vivo_medio": 37.17566666666597,
+            "kills": 2,
+            "bombas_colocadas": 28,
+            "mortes": 1,
+            "fitness": 12950.738666666663
+        },
+        {
+            "geracao": 1,
+            "jogador": 2,
+            "gene": {
+                "tempo_fuga": 19,
+                "chance_bomba": 0.31,
+                "margem_seguranca": 2,
+                "cautela_bomba": 1.79,
+                "chance_ataque": 0.2,
+                "distancia_perseguir": 3,
+                "tempo_perigo_iminente": 0.69,
+                "max_passos_fuga": 9,
+                "margem_tempo_base": 0.4,
+                "persistencia_movimento": 3
+            },
+            "media_pontos": 8633.333333333334,
+            "vitorias": 2,
+            "tempo_vivo_medio": 54.56333333333324,
+            "kills": 0,
+            "bombas_colocadas": 34,
+            "mortes": 1,
+            "fitness": 11409.84
         },
         {
             "geracao": 1,
             "jogador": 3,
             "gene": {
-                "tempo_fuga": 52,
-                "chance_bomba": 0.33,
-                "margem_seguranca": 1,
-                "cautela_bomba": 0.8,
-                "chance_ataque": 0.19,
-                "distancia_perseguir": 6,
-                "tempo_perigo_iminente": 0.8
+                "tempo_fuga": 38,
+                "chance_bomba": 0.21,
+                "margem_seguranca": 2,
+                "cautela_bomba": 1.7,
+                "chance_ataque": 0.42,
+                "distancia_perseguir": 7,
+                "tempo_perigo_iminente": 0.81,
+                "max_passos_fuga": 8,
+                "margem_tempo_base": 0.38,
+                "persistencia_movimento": 3
             },
-            "media_pontos": 9833.333333333334,
+            "media_pontos": 11466.666666666666,
             "vitorias": 3,
-            "fitness": 15833.333333333334
+            "tempo_vivo_medio": 58.87699999999987,
+            "kills": 0,
+            "bombas_colocadas": 24,
+            "mortes": 0,
+            "fitness": 16977.682666666664
         },
         {
             "geracao": 1,
             "jogador": 4,
             "gene": {
-                "tempo_fuga": 19,
-                "chance_bomba": 0.25,
-                "margem_seguranca": 3,
-                "cautela_bomba": 1.15,
-                "chance_ataque": 0.35,
-                "distancia_perseguir": 5,
-                "tempo_perigo_iminente": 0.59
+                "tempo_fuga": 28,
+                "chance_bomba": 0.11,
+                "margem_seguranca": 1,
+                "cautela_bomba": 1.88,
+                "chance_ataque": 0.13,
+                "distancia_perseguir": 7,
+                "tempo_perigo_iminente": 0.67,
+                "max_passos_fuga": 6,
+                "margem_tempo_base": 0.33,
+                "persistencia_movimento": 1
             },
-            "media_pontos": 9333.333333333334,
+            "media_pontos": 7833.333333333333,
             "vitorias": 2,
-            "fitness": 13333.333333333334
+            "tempo_vivo_medio": 35.97499999999929,
+            "kills": 1,
+            "bombas_colocadas": 22,
+            "mortes": 1,
+            "fitness": 11761.133333333326
         },
         {
             "geracao": 2,
             "jogador": 1,
             "gene": {
-                "tempo_fuga": 20,
-                "chance_bomba": 0.32,
-                "margem_seguranca": 3,
-                "cautela_bomba": 1.37,
-                "chance_ataque": 0.37,
-                "distancia_perseguir": 2,
-                "tempo_perigo_iminente": 0.38
-            },
-            "media_pontos": 6400.0,
-            "vitorias": 1,
-            "fitness": 8400.0
-        },
-        {
-            "geracao": 2,
-            "jogador": 2,
-            "gene": {
-                "tempo_fuga": 25,
-                "chance_bomba": 0.37,
+                "tempo_fuga": 26,
+                "chance_bomba": 0.26,
                 "margem_seguranca": 2,
-                "cautela_bomba": 0.54,
-                "chance_ataque": 0.48,
-                "distancia_perseguir": 5,
-                "tempo_perigo_iminente": 0.84
-            },
-            "media_pontos": 9833.333333333334,
-            "vitorias": 2,
-            "fitness": 13833.333333333334
-        },
-        {
-            "geracao": 2,
-            "jogador": 3,
-            "gene": {
-                "tempo_fuga": 49,
-                "chance_bomba": 0.33,
-                "margem_seguranca": 1,
-                "cautela_bomba": 0.8,
-                "chance_ataque": 0.19,
-                "distancia_perseguir": 6,
-                "tempo_perigo_iminente": 0.84
-            },
-            "media_pontos": 9316.666666666666,
-            "vitorias": 2,
-            "fitness": 13316.666666666666
-        },
-        {
-            "geracao": 2,
-            "jogador": 4,
-            "gene": {
-                "tempo_fuga": 19,
-                "chance_bomba": 0.27,
-                "margem_seguranca": 3,
-                "cautela_bomba": 1.25,
-                "chance_ataque": 0.47,
-                "distancia_perseguir": 4,
-                "tempo_perigo_iminente": 0.44
-            },
-            "media_pontos": 9866.666666666666,
-            "vitorias": 2,
-            "fitness": 13866.666666666666
-        },
-        {
-            "geracao": 3,
-            "jogador": 1,
-            "gene": {
-                "tempo_fuga": 20,
-                "chance_bomba": 0.28,
-                "margem_seguranca": 2,
-                "cautela_bomba": 1.06,
-                "chance_ataque": 0.55,
-                "distancia_perseguir": 2,
-                "tempo_perigo_iminente": 0.38
-            },
-            "media_pontos": 5300.0,
-            "vitorias": 1,
-            "fitness": 7300.0
-        },
-        {
-            "geracao": 3,
-            "jogador": 2,
-            "gene": {
-                "tempo_fuga": 20,
-                "chance_bomba": 0.23,
-                "margem_seguranca": 0,
-                "cautela_bomba": 0.39,
-                "chance_ataque": 0.48,
-                "distancia_perseguir": 4,
-                "tempo_perigo_iminente": 0.7
-            },
-            "media_pontos": 14116.666666666666,
-            "vitorias": 3,
-            "fitness": 20116.666666666664
-        },
-        {
-            "geracao": 3,
-            "jogador": 3,
-            "gene": {
-                "tempo_fuga": 48,
-                "chance_bomba": 0.25,
-                "margem_seguranca": 1,
-                "cautela_bomba": 0.8,
-                "chance_ataque": 0.18,
-                "distancia_perseguir": 6,
-                "tempo_perigo_iminente": 0.72
-            },
-            "media_pontos": 11900.0,
-            "vitorias": 3,
-            "fitness": 17900.0
-        },
-        {
-            "geracao": 3,
-            "jogador": 4,
-            "gene": {
-                "tempo_fuga": 40,
-                "chance_bomba": 0.45,
-                "margem_seguranca": 3,
-                "cautela_bomba": 0.3,
+                "cautela_bomba": 1.5,
                 "chance_ataque": 0.1,
-                "distancia_perseguir": 4,
-                "tempo_perigo_iminente": 1.07
+                "distancia_perseguir": 6,
+                "tempo_perigo_iminente": 0.97,
+                "max_passos_fuga": 11,
+                "margem_tempo_base": 0.44,
+                "persistencia_movimento": 4
             },
-            "media_pontos": 9250.0,
+            "media_pontos": 8516.666666666666,
             "vitorias": 2,
-            "fitness": 13250.0
+            "tempo_vivo_medio": 50.132999999999235,
+            "kills": 1,
+            "bombas_colocadas": 25,
+            "mortes": 1,
+            "fitness": 12437.730666666659
         },
         {
-            "geracao": 4,
-            "jogador": 1,
-            "gene": {
-                "tempo_fuga": 27,
-                "chance_bomba": 0.3,
-                "margem_seguranca": 3,
-                "cautela_bomba": 1.45,
-                "chance_ataque": 0.36,
-                "distancia_perseguir": 2,
-                "tempo_perigo_iminente": 0.48
-            },
-            "media_pontos": 9466.666666666666,
-            "vitorias": 2,
-            "fitness": 13466.666666666666
-        },
-        {
-            "geracao": 4,
+            "geracao": 2,
             "jogador": 2,
             "gene": {
-                "tempo_fuga": 25,
-                "chance_bomba": 0.37,
+                "tempo_fuga": 17,
+                "chance_bomba": 0.48,
                 "margem_seguranca": 2,
-                "cautela_bomba": 0.54,
-                "chance_ataque": 0.48,
-                "distancia_perseguir": 5,
-                "tempo_perigo_iminente": 0.84
-            },
-            "media_pontos": 5233.333333333333,
-            "vitorias": 1,
-            "fitness": 7233.333333333333
-        },
-        {
-            "geracao": 4,
-            "jogador": 3,
-            "gene": {
-                "tempo_fuga": 60,
-                "chance_bomba": 0.24,
-                "margem_seguranca": 1,
-                "cautela_bomba": 0.53,
-                "chance_ataque": 0.27,
-                "distancia_perseguir": 5,
-                "tempo_perigo_iminente": 1.02
+                "cautela_bomba": 1.79,
+                "chance_ataque": 0.47,
+                "distancia_perseguir": 2,
+                "tempo_perigo_iminente": 0.69,
+                "max_passos_fuga": 12,
+                "margem_tempo_base": 0.34,
+                "persistencia_movimento": 2
             },
             "media_pontos": 8900.0,
+            "vitorias": 2,
+            "tempo_vivo_medio": 67.91699999999997,
+            "kills": 0,
+            "bombas_colocadas": 35,
+            "mortes": 1,
+            "fitness": 11743.336
+        },
+        {
+            "geracao": 2,
+            "jogador": 3,
+            "gene": {
+                "tempo_fuga": 11,
+                "chance_bomba": 0.21,
+                "margem_seguranca": 3,
+                "cautela_bomba": 1.7,
+                "chance_ataque": 0.45,
+                "distancia_perseguir": 4,
+                "tempo_perigo_iminente": 0.99,
+                "max_passos_fuga": 9,
+                "margem_tempo_base": 0.53,
+                "persistencia_movimento": 3
+            },
+            "media_pontos": 8300.0,
+            "vitorias": 2,
+            "tempo_vivo_medio": 82.95233333333213,
+            "kills": 0,
+            "bombas_colocadas": 30,
+            "mortes": 1,
+            "fitness": 11463.618666666656
+        },
+        {
+            "geracao": 2,
+            "jogador": 4,
+            "gene": {
+                "tempo_fuga": 37,
+                "chance_bomba": 0.23,
+                "margem_seguranca": 2,
+                "cautela_bomba": 0.89,
+                "chance_ataque": 0.33,
+                "distancia_perseguir": 5,
+                "tempo_perigo_iminente": 0.64,
+                "max_passos_fuga": 6,
+                "margem_tempo_base": 0.33,
+                "persistencia_movimento": 2
+            },
+            "media_pontos": 8000.0,
+            "vitorias": 2,
+            "tempo_vivo_medio": 50.194666666665704,
+            "kills": 1,
+            "bombas_colocadas": 22,
+            "mortes": 1,
+            "fitness": 12041.557333333325
+        },
+        {
+            "geracao": 3,
+            "jogador": 1,
+            "gene": {
+                "tempo_fuga": 10,
+                "chance_bomba": 0.4,
+                "margem_seguranca": 1,
+                "cautela_bomba": 1.5,
+                "chance_ataque": 0.1,
+                "distancia_perseguir": 3,
+                "tempo_perigo_iminente": 0.89,
+                "max_passos_fuga": 9,
+                "margem_tempo_base": 0.43,
+                "persistencia_movimento": 4
+            },
+            "media_pontos": 10366.666666666666,
+            "vitorias": 2,
+            "tempo_vivo_medio": 63.79433333333352,
+            "kills": 3,
+            "bombas_colocadas": 35,
+            "mortes": 1,
+            "fitness": 15637.021333333334
+        },
+        {
+            "geracao": 3,
+            "jogador": 2,
+            "gene": {
+                "tempo_fuga": 25,
+                "chance_bomba": 0.49,
+                "margem_seguranca": 1,
+                "cautela_bomba": 1.86,
+                "chance_ataque": 0.27,
+                "distancia_perseguir": 2,
+                "tempo_perigo_iminente": 0.69,
+                "max_passos_fuga": 10,
+                "margem_tempo_base": 0.37,
+                "persistencia_movimento": 3
+            },
+            "media_pontos": 10366.666666666666,
             "vitorias": 3,
-            "fitness": 14900.0
+            "tempo_vivo_medio": 71.91766666666709,
+            "kills": 2,
+            "bombas_colocadas": 48,
+            "mortes": 1,
+            "fitness": 16362.008000000002
+        },
+        {
+            "geracao": 3,
+            "jogador": 3,
+            "gene": {
+                "tempo_fuga": 41,
+                "chance_bomba": 0.38,
+                "margem_seguranca": 2,
+                "cautela_bomba": 1.7,
+                "chance_ataque": 0.34,
+                "distancia_perseguir": 5,
+                "tempo_perigo_iminente": 0.94,
+                "max_passos_fuga": 8,
+                "margem_tempo_base": 0.38,
+                "persistencia_movimento": 4
+            },
+            "media_pontos": 6233.333333333333,
+            "vitorias": 1,
+            "tempo_vivo_medio": 53.11666666666639,
+            "kills": 2,
+            "bombas_colocadas": 38,
+            "mortes": 2,
+            "fitness": 8178.266666666663
+        },
+        {
+            "geracao": 3,
+            "jogador": 4,
+            "gene": {
+                "tempo_fuga": 31,
+                "chance_bomba": 0.13,
+                "margem_seguranca": 2,
+                "cautela_bomba": 0.75,
+                "chance_ataque": 0.53,
+                "distancia_perseguir": 5,
+                "tempo_perigo_iminente": 0.78,
+                "max_passos_fuga": 7,
+                "margem_tempo_base": 0.37,
+                "persistencia_movimento": 4
+            },
+            "media_pontos": 5566.666666666667,
+            "vitorias": 2,
+            "tempo_vivo_medio": 101.59433333332765,
+            "kills": 2,
+            "bombas_colocadas": 38,
+            "mortes": 1,
+            "fitness": 10199.421333333288
+        },
+        {
+            "geracao": 4,
+            "jogador": 1,
+            "gene": {
+                "tempo_fuga": 10,
+                "chance_bomba": 0.32,
+                "margem_seguranca": 1,
+                "cautela_bomba": 1.5,
+                "chance_ataque": 0.12,
+                "distancia_perseguir": 6,
+                "tempo_perigo_iminente": 0.72,
+                "max_passos_fuga": 10,
+                "margem_tempo_base": 0.42,
+                "persistencia_movimento": 4
+            },
+            "media_pontos": 5466.666666666667,
+            "vitorias": 2,
+            "tempo_vivo_medio": 56.0979999999999,
+            "kills": 2,
+            "bombas_colocadas": 26,
+            "mortes": 2,
+            "fitness": 9915.450666666668
+        },
+        {
+            "geracao": 4,
+            "jogador": 2,
+            "gene": {
+                "tempo_fuga": 27,
+                "chance_bomba": 0.32,
+                "margem_seguranca": 2,
+                "cautela_bomba": 1.87,
+                "chance_ataque": 0.19,
+                "distancia_perseguir": 3,
+                "tempo_perigo_iminente": 0.69,
+                "max_passos_fuga": 8,
+                "margem_tempo_base": 0.4,
+                "persistencia_movimento": 3
+            },
+            "media_pontos": 9200.0,
+            "vitorias": 2,
+            "tempo_vivo_medio": 70.17333333333319,
+            "kills": 2,
+            "bombas_colocadas": 33,
+            "mortes": 1,
+            "fitness": 13781.386666666665
+        },
+        {
+            "geracao": 4,
+            "jogador": 3,
+            "gene": {
+                "tempo_fuga": 39,
+                "chance_bomba": 0.38,
+                "margem_seguranca": 3,
+                "cautela_bomba": 1.67,
+                "chance_ataque": 0.31,
+                "distancia_perseguir": 4,
+                "tempo_perigo_iminente": 0.97,
+                "max_passos_fuga": 9,
+                "margem_tempo_base": 0.39,
+                "persistencia_movimento": 4
+            },
+            "media_pontos": 8450.0,
+            "vitorias": 2,
+            "tempo_vivo_medio": 44.080999999998916,
+            "kills": 2,
+            "bombas_colocadas": 26,
+            "mortes": 1,
+            "fitness": 13102.647999999992
         },
         {
             "geracao": 4,
             "jogador": 4,
             "gene": {
-                "tempo_fuga": 18,
-                "chance_bomba": 0.27,
+                "tempo_fuga": 50,
+                "chance_bomba": 0.11,
                 "margem_seguranca": 2,
-                "cautela_bomba": 1.15,
-                "chance_ataque": 0.23,
+                "cautela_bomba": 0.75,
+                "chance_ataque": 0.14,
+                "distancia_perseguir": 5,
+                "tempo_perigo_iminente": 1.06,
+                "max_passos_fuga": 9,
+                "margem_tempo_base": 0.46,
+                "persistencia_movimento": 3
+            },
+            "media_pontos": 9550.0,
+            "vitorias": 2,
+            "tempo_vivo_medio": 64.11166666666618,
+            "kills": 3,
+            "bombas_colocadas": 35,
+            "mortes": 1,
+            "fitness": 14822.89333333333
+        },
+        {
+            "geracao": 5,
+            "jogador": 1,
+            "gene": {
+                "tempo_fuga": 26,
+                "chance_bomba": 0.4,
+                "margem_seguranca": 1,
+                "cautela_bomba": 1.5,
+                "chance_ataque": 0.12,
+                "distancia_perseguir": 3,
+                "tempo_perigo_iminente": 1.09,
+                "max_passos_fuga": 10,
+                "margem_tempo_base": 0.43,
+                "persistencia_movimento": 3
+            },
+            "media_pontos": 9650.0,
+            "vitorias": 2,
+            "tempo_vivo_medio": 65.21366666666665,
+            "kills": 3,
+            "bombas_colocadas": 38,
+            "mortes": 1,
+            "fitness": 14811.709333333332
+        },
+        {
+            "geracao": 5,
+            "jogador": 2,
+            "gene": {
+                "tempo_fuga": 24,
+                "chance_bomba": 0.5,
+                "margem_seguranca": 3,
+                "cautela_bomba": 0.4,
+                "chance_ataque": 0.48,
+                "distancia_perseguir": 2,
+                "tempo_perigo_iminente": 0.89,
+                "max_passos_fuga": 12,
+                "margem_tempo_base": 0.34,
+                "persistencia_movimento": 2
+            },
+            "media_pontos": 8716.666666666666,
+            "vitorias": 2,
+            "tempo_vivo_medio": 67.70200000000006,
+            "kills": 1,
+            "bombas_colocadas": 37,
+            "mortes": 1,
+            "fitness": 12298.282666666666
+        },
+        {
+            "geracao": 5,
+            "jogador": 3,
+            "gene": {
+                "tempo_fuga": 40,
+                "chance_bomba": 0.25,
+                "margem_seguranca": 3,
+                "cautela_bomba": 1.67,
+                "chance_ataque": 0.38,
                 "distancia_perseguir": 4,
-                "tempo_perigo_iminente": 0.59
+                "tempo_perigo_iminente": 0.97,
+                "max_passos_fuga": 9,
+                "margem_tempo_base": 0.39,
+                "persistencia_movimento": 3
+            },
+            "media_pontos": 9133.333333333334,
+            "vitorias": 2,
+            "tempo_vivo_medio": 68.97966666666706,
+            "kills": 1,
+            "bombas_colocadas": 40,
+            "mortes": 1,
+            "fitness": 12605.17066666667
+        },
+        {
+            "geracao": 5,
+            "jogador": 4,
+            "gene": {
+                "tempo_fuga": 31,
+                "chance_bomba": 0.13,
+                "margem_seguranca": 1,
+                "cautela_bomba": 0.75,
+                "chance_ataque": 0.45,
+                "distancia_perseguir": 4,
+                "tempo_perigo_iminente": 0.78,
+                "max_passos_fuga": 8,
+                "margem_tempo_base": 0.39,
+                "persistencia_movimento": 4
+            },
+            "media_pontos": 8800.0,
+            "vitorias": 2,
+            "tempo_vivo_medio": 112.2189999999947,
+            "kills": 2,
+            "bombas_colocadas": 32,
+            "mortes": 0,
+            "fitness": 14057.751999999957
+        },
+        {
+            "geracao": 6,
+            "jogador": 1,
+            "gene": {
+                "tempo_fuga": 11,
+                "chance_bomba": 0.4,
+                "margem_seguranca": 1,
+                "cautela_bomba": 1.46,
+                "chance_ataque": 0.15,
+                "distancia_perseguir": 3,
+                "tempo_perigo_iminente": 1.09,
+                "max_passos_fuga": 10,
+                "margem_tempo_base": 0.44,
+                "persistencia_movimento": 3
+            },
+            "media_pontos": 10316.666666666666,
+            "vitorias": 2,
+            "tempo_vivo_medio": 94.5643333333345,
+            "kills": 4,
+            "bombas_colocadas": 50,
+            "mortes": 1,
+            "fitness": 16053.181333333341
+        },
+        {
+            "geracao": 6,
+            "jogador": 2,
+            "gene": {
+                "tempo_fuga": 25,
+                "chance_bomba": 0.48,
+                "margem_seguranca": 3,
+                "cautela_bomba": 0.5,
+                "chance_ataque": 0.2,
+                "distancia_perseguir": 6,
+                "tempo_perigo_iminente": 0.99,
+                "max_passos_fuga": 12,
+                "margem_tempo_base": 0.34,
+                "persistencia_movimento": 1
             },
             "media_pontos": 8966.666666666666,
             "vitorias": 2,
-            "fitness": 12966.666666666666
+            "tempo_vivo_medio": 70.44599999999988,
+            "kills": 1,
+            "bombas_colocadas": 46,
+            "mortes": 1,
+            "fitness": 12210.234666666665
         },
         {
-            "geracao": 5,
-            "jogador": 1,
-            "gene": {
-                "tempo_fuga": 21,
-                "chance_bomba": 0.32,
-                "margem_seguranca": 3,
-                "cautela_bomba": 1.45,
-                "chance_ataque": 0.37,
-                "distancia_perseguir": 2,
-                "tempo_perigo_iminente": 0.34
-            },
-            "media_pontos": 6133.333333333333,
-            "vitorias": 1,
-            "fitness": 8133.333333333333
-        },
-        {
-            "geracao": 5,
-            "jogador": 2,
-            "gene": {
-                "tempo_fuga": 20,
-                "chance_bomba": 0.2,
-                "margem_seguranca": 0,
-                "cautela_bomba": 0.43,
-                "chance_ataque": 0.48,
-                "distancia_perseguir": 4,
-                "tempo_perigo_iminente": 0.72
-            },
-            "media_pontos": 14200.0,
-            "vitorias": 3,
-            "fitness": 20200.0
-        },
-        {
-            "geracao": 5,
+            "geracao": 6,
             "jogador": 3,
             "gene": {
-                "tempo_fuga": 47,
-                "chance_bomba": 0.34,
-                "margem_seguranca": 1,
-                "cautela_bomba": 0.6,
-                "chance_ataque": 0.15,
-                "distancia_perseguir": 6,
-                "tempo_perigo_iminente": 0.8
+                "tempo_fuga": 41,
+                "chance_bomba": 0.4,
+                "margem_seguranca": 3,
+                "cautela_bomba": 1.6,
+                "chance_ataque": 0.34,
+                "distancia_perseguir": 3,
+                "tempo_perigo_iminente": 0.99,
+                "max_passos_fuga": 10,
+                "margem_tempo_base": 0.38,
+                "persistencia_movimento": 4
             },
-            "media_pontos": 8783.333333333334,
+            "media_pontos": 9500.0,
             "vitorias": 2,
-            "fitness": 12783.333333333334
+            "tempo_vivo_medio": 71.1086666666666,
+            "kills": 1,
+            "bombas_colocadas": 41,
+            "mortes": 1,
+            "fitness": 12948.869333333332
         },
         {
-            "geracao": 5,
+            "geracao": 6,
             "jogador": 4,
             "gene": {
-                "tempo_fuga": 18,
-                "chance_bomba": 0.27,
+                "tempo_fuga": 50,
+                "chance_bomba": 0.11,
                 "margem_seguranca": 2,
-                "cautela_bomba": 1.15,
-                "chance_ataque": 0.23,
-                "distancia_perseguir": 4,
-                "tempo_perigo_iminente": 0.59
+                "cautela_bomba": 0.75,
+                "chance_ataque": 0.14,
+                "distancia_perseguir": 5,
+                "tempo_perigo_iminente": 1.06,
+                "max_passos_fuga": 9,
+                "margem_tempo_base": 0.46,
+                "persistencia_movimento": 3
             },
-            "media_pontos": 11966.666666666666,
-            "vitorias": 3,
-            "fitness": 17966.666666666664
+            "media_pontos": 10033.333333333334,
+            "vitorias": 2,
+            "tempo_vivo_medio": 116.88633333333523,
+            "kills": 3,
+            "bombas_colocadas": 42,
+            "mortes": 1,
+            "fitness": 15448.424000000014
         }
     ],
     "melhores_gerais": {
         "1": {
             "gene": {
-                "tempo_fuga": 27,
-                "chance_bomba": 0.3,
-                "margem_seguranca": 3,
-                "cautela_bomba": 1.45,
-                "chance_ataque": 0.36,
-                "distancia_perseguir": 2,
-                "tempo_perigo_iminente": 0.48
+                "tempo_fuga": 11,
+                "chance_bomba": 0.4,
+                "margem_seguranca": 1,
+                "cautela_bomba": 1.46,
+                "chance_ataque": 0.15,
+                "distancia_perseguir": 3,
+                "tempo_perigo_iminente": 1.09,
+                "max_passos_fuga": 10,
+                "margem_tempo_base": 0.44,
+                "persistencia_movimento": 3
             },
-            "media_pontos": 9466.666666666666,
+            "media_pontos": 10316.666666666666,
             "vitorias": 2,
-            "fitness": 13466.666666666666
+            "tempo_vivo_medio": 94.5643333333345,
+            "kills": 4,
+            "bombas_colocadas": 50,
+            "mortes": 1,
+            "fitness": 16053.181333333341
         },
         "2": {
             "gene": {
-                "tempo_fuga": 20,
-                "chance_bomba": 0.2,
-                "margem_seguranca": 0,
-                "cautela_bomba": 0.43,
-                "chance_ataque": 0.48,
-                "distancia_perseguir": 4,
-                "tempo_perigo_iminente": 0.72
+                "tempo_fuga": 25,
+                "chance_bomba": 0.49,
+                "margem_seguranca": 1,
+                "cautela_bomba": 1.86,
+                "chance_ataque": 0.27,
+                "distancia_perseguir": 2,
+                "tempo_perigo_iminente": 0.69,
+                "max_passos_fuga": 10,
+                "margem_tempo_base": 0.37,
+                "persistencia_movimento": 3
             },
-            "media_pontos": 14200.0,
+            "media_pontos": 10366.666666666666,
             "vitorias": 3,
-            "fitness": 20200.0
+            "tempo_vivo_medio": 71.91766666666709,
+            "kills": 2,
+            "bombas_colocadas": 48,
+            "mortes": 1,
+            "fitness": 16362.008000000002
         },
         "3": {
             "gene": {
-                "tempo_fuga": 48,
-                "chance_bomba": 0.25,
-                "margem_seguranca": 1,
-                "cautela_bomba": 0.8,
-                "chance_ataque": 0.18,
-                "distancia_perseguir": 6,
-                "tempo_perigo_iminente": 0.72
+                "tempo_fuga": 38,
+                "chance_bomba": 0.21,
+                "margem_seguranca": 2,
+                "cautela_bomba": 1.7,
+                "chance_ataque": 0.42,
+                "distancia_perseguir": 7,
+                "tempo_perigo_iminente": 0.81,
+                "max_passos_fuga": 8,
+                "margem_tempo_base": 0.38,
+                "persistencia_movimento": 3
             },
-            "media_pontos": 11900.0,
+            "media_pontos": 11466.666666666666,
             "vitorias": 3,
-            "fitness": 17900.0
+            "tempo_vivo_medio": 58.87699999999987,
+            "kills": 0,
+            "bombas_colocadas": 24,
+            "mortes": 0,
+            "fitness": 16977.682666666664
         },
         "4": {
             "gene": {
-                "tempo_fuga": 18,
-                "chance_bomba": 0.27,
+                "tempo_fuga": 50,
+                "chance_bomba": 0.11,
                 "margem_seguranca": 2,
-                "cautela_bomba": 1.15,
-                "chance_ataque": 0.23,
-                "distancia_perseguir": 4,
-                "tempo_perigo_iminente": 0.59
+                "cautela_bomba": 0.75,
+                "chance_ataque": 0.14,
+                "distancia_perseguir": 5,
+                "tempo_perigo_iminente": 1.06,
+                "max_passos_fuga": 9,
+                "margem_tempo_base": 0.46,
+                "persistencia_movimento": 3
             },
-            "media_pontos": 11966.666666666666,
-            "vitorias": 3,
-            "fitness": 17966.666666666664
+            "media_pontos": 10033.333333333334,
+            "vitorias": 2,
+            "tempo_vivo_medio": 116.88633333333523,
+            "kills": 3,
+            "bombas_colocadas": 42,
+            "mortes": 1,
+            "fitness": 15448.424000000014
         }
     }
 }

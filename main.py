@@ -567,20 +567,29 @@ while True:
                 for p in players:
                     if p.ativo and (p.grid_x, p.grid_y) in b.fogo:
                         p.ativo = False
-                        mortes[players.index(p)] += 1
-                        if b.dono == p:
-                            pontos[players.index(p)] -= PONTOS_MATAR_JOGADOR
-                            if pontos[players.index(p)]<0:
-                                pontos[players.index(p)]=0;
 
+                        idx_morto = players.index(p)
+                        mortes[idx_morto] += 1
+
+                        # ⚠️ PROTEÇÃO IMPORTANTE
+                        if b.dono is not None:
+                            idx_dono = players.index(b.dono)
+
+                            if b.dono == p:
+                                # suicídio
+                                pontos[idx_dono] -= PONTOS_MATAR_JOGADOR
+                                if pontos[idx_dono] < 0:
+                                    pontos[idx_dono] = 0
+
+                                print(f"SUICÍDIO -> jogador: {idx_morto}")
+                            else:
+                                # kill normal
+                                pontos[idx_dono] += PONTOS_MATAR_JOGADOR
+                                kills[idx_dono] += 1
+
+                                print(f"KILL -> dono: {idx_dono} matou jogador: {idx_morto}")
                         else:
-                            pontos[players.index(b.dono)] += PONTOS_MATAR_JOGADOR
-                            kills[players.index(b.dono)] += 1
-                        nomes = [p1, p2, p3, p4]
-
-                        nome = nomes[players.index(p)]
-                        print(f"{nome} morreu!")
-
+                            print(f"MORTE SEM DONO -> jogador: {idx_morto}")
     if vencedor_final is None:
         vivos = [p for p in players if p.ativo]
         if len(vivos) == 1:
@@ -596,6 +605,7 @@ while True:
                 nome_vencedor = p4
             if vencedor_final==4:
                 nome_vencedor = p5
+            
             mensagem_vitoria = f"Jogador {nome_vencedor} VENCEU!"
 
     screen.fill(COLOR_BG)

@@ -1,14 +1,21 @@
 {
     "gene": {
-        "tempo_fuga": 48,
-        "chance_bomba": 0.25,
-        "margem_seguranca": 1,
-        "cautela_bomba": 0.8,
-        "chance_ataque": 0.18,
-        "distancia_perseguir": 6,
-        "tempo_perigo_iminente": 0.72
+        "tempo_fuga": 38,
+        "chance_bomba": 0.21,
+        "margem_seguranca": 2,
+        "cautela_bomba": 1.7,
+        "chance_ataque": 0.42,
+        "distancia_perseguir": 7,
+        "tempo_perigo_iminente": 0.81,
+        "max_passos_fuga": 8,
+        "margem_tempo_base": 0.38,
+        "persistencia_movimento": 3
     },
-    "media_pontos": 11900.0,
+    "media_pontos": 11466.666666666666,
     "vitorias": 3,
-    "fitness": 17900.0
+    "tempo_vivo_medio": 58.87699999999987,
+    "kills": 0,
+    "bombas_colocadas": 24,
+    "mortes": 0,
+    "fitness": 16977.682666666664
 }
