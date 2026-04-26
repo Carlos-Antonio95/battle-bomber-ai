@@ -251,6 +251,7 @@ class Player:
                 'tempo_explosao': TEMPO_EXPLOSAO,
                 'tempo_fogo': TEMPO_FOGO,
                 'max_bombas': MAX_BOMBAS,
+                'tempo_partida': TEMPO_PARTIDA,
             }
 
             chks_player = gerar_checksum_dados(self)
@@ -606,3 +607,4 @@ while True:
             screen.blit(texto, rect)
         pygame.display.flip()
         continue  # pula o restante do loop para congelar o jogo
+        sys.exit()  # sair após o jogo terminar para treinamento
