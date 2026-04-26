@@ -1,190 +1,158 @@
 RELATÓRIO TÉCNICO DO CAMPEONATO BOMBERMAN
 =======================================================
 
-Data: 26/04/2026 19:26:52
-Partidas válidas: 10
+Data: 26/04/2026 20:10:44
+Partidas válidas: 8
 
 RANKING FINAL
 -------------------------------------------------------
-🥇 1º - Donald_Trump | Score: 118100 | Pontos: 95700 | Vitórias: 7 | Kills: 4 | Mortes: 2 | Suicídios: 2 | Tempo médio vivo: 92.04s
-Análise: mostrou poder de decisão e conseguiu vencer partida; teve postura ofensiva forte; precisa melhorar a fuga após plantar bombas
+🥇 1º - Donald_Trump | Score: 83550 | Pontos: 68950 | Vitórias: 6 | Kills: 0 | Mortes: 2 | Suicídios: 2 | Tempo médio vivo: 72.67s
+Análise: mostrou poder de decisão e conseguiu vencer partida; precisa melhorar a fuga após plantar bombas; plantou bombas, mas não converteu em eliminações
 
-🥈 2º - Osama_bin_laden | Score: 44700 | Pontos: 44900 | Vitórias: 2 | Kills: 0 | Mortes: 6 | Suicídios: 2 | Tempo médio vivo: 94.25s
-Análise: mostrou poder de decisão e conseguiu vencer partida; sofreu bastante pressão durante o campeonato; precisa melhorar a fuga após plantar bombas; plantou bombas, mas não converteu em eliminações
+🥈 2º - Gambeta | Score: 18900 | Pontos: 22900 | Vitórias: 1 | Kills: 1 | Mortes: 6 | Suicídios: 4 | Tempo médio vivo: 54.88s
+Análise: mostrou poder de decisão e conseguiu vencer partida; conseguiu eliminar adversários em momentos importantes; sofreu bastante pressão durante o campeonato; precisa melhorar a fuga após plantar bombas
 
-🥉 3º - Gambeta | Score: 3000 | Pontos: 15300 | Vitórias: 1 | Kills: 0 | Mortes: 9 | Suicídios: 9 | Tempo médio vivo: 58.26s
-Análise: mostrou poder de decisão e conseguiu vencer partida; sofreu bastante pressão durante o campeonato; precisa melhorar a fuga após plantar bombas; plantou bombas, mas não converteu em eliminações
+🥉 3º - Osama_bin_laden | Score: 17500 | Pontos: 23000 | Vitórias: 1 | Kills: 2 | Mortes: 7 | Suicídios: 6 | Tempo médio vivo: 61.45s
+Análise: mostrou poder de decisão e conseguiu vencer partida; conseguiu eliminar adversários em momentos importantes; sofreu bastante pressão durante o campeonato; precisa melhorar a fuga após plantar bombas
 
-🏅 4º - Vladimir_Puttin | Score: -16600 | Pontos: 400 | Vitórias: 0 | Kills: 0 | Mortes: 10 | Suicídios: 10 | Tempo médio vivo: 4.3s
+🏅 4º - Vladimir_Puttin | Score: -13200 | Pontos: 400 | Vitórias: 0 | Kills: 0 | Mortes: 8 | Suicídios: 8 | Tempo médio vivo: 4.49s
 Análise: sofreu bastante pressão durante o campeonato; precisa melhorar a fuga após plantar bombas; plantou bombas, mas não converteu em eliminações; costumou cair cedo nas partidas
 
 DETALHES POR PARTIDA
 =======================================================
-
-🎬 PARTIDA 1
----------------------------------------------
-A arena foi aberta e os competidores entraram buscando espaço, poder-ups e eliminações.
-
-Momentos decisivos:
-• Aos 4.02s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 18.42s, Gambeta se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 66.5s, Donald_Trump acertou em cheio e eliminou Osama_bin_laden da partida.
-
-🏆 Resultado da partida: Donald_Trump saiu como vencedor.
-
-Placar da partida:
-• Gambeta: 200 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Vladimir_Puttin: 0 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Osama_bin_laden: 2000 pontos | Kills: 0 | Mortes: 1 | Suicídios: 0
-• Donald_Trump: 14200 pontos | Kills: 1 | Mortes: 0 | Suicídios: 0
 
 🎬 PARTIDA 2
 ---------------------------------------------
 A arena foi aberta e os competidores entraram buscando espaço, poder-ups e eliminações.
 
 Momentos decisivos:
-• Aos 4.7s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 40.3s, Gambeta se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 60.45s, Donald_Trump acertou em cheio e eliminou Osama_bin_laden da partida.
+• Aos 4.5s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 49.75s, Gambeta se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 83.35s, Osama_bin_laden se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
 
 🏆 Resultado da partida: Donald_Trump saiu como vencedor.
 
 Placar da partida:
-• Gambeta: 1400 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+• Gambeta: 2300 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
 • Vladimir_Puttin: 0 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Osama_bin_laden: 2000 pontos | Kills: 0 | Mortes: 1 | Suicídios: 0
-• Donald_Trump: 14050 pontos | Kills: 1 | Mortes: 0 | Suicídios: 0
+• Osama_bin_laden: 2100 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+• Donald_Trump: 12300 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
 
 🎬 PARTIDA 3
 ---------------------------------------------
 A arena foi aberta e os competidores entraram buscando espaço, poder-ups e eliminações.
 
 Momentos decisivos:
-• Aos 4.03s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 52.79s, Gambeta se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 4.06s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 42.79s, Osama_bin_laden acertou em cheio e eliminou Gambeta da partida.
+• Aos 42.79s, Osama_bin_laden se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
 
 🏆 Resultado da partida: Donald_Trump saiu como vencedor.
 
 Placar da partida:
-• Gambeta: 1900 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+• Gambeta: 1500 pontos | Kills: 0 | Mortes: 1 | Suicídios: 0
 • Vladimir_Puttin: 0 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Osama_bin_laden: 2800 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
-• Donald_Trump: 4200 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
+• Osama_bin_laden: 1500 pontos | Kills: 1 | Mortes: 1 | Suicídios: 1
+• Donald_Trump: 11800 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
 
 🎬 PARTIDA 4
 ---------------------------------------------
 A arena foi aberta e os competidores entraram buscando espaço, poder-ups e eliminações.
 
 Momentos decisivos:
-• Aos 4.02s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 9.25s, Gambeta se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 63.06s, Donald_Trump acertou em cheio e eliminou Osama_bin_laden da partida.
+• Aos 4.01s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 29.75s, Gambeta se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 29.87s, Gambeta acertou em cheio e eliminou Osama_bin_laden da partida.
 
 🏆 Resultado da partida: Donald_Trump saiu como vencedor.
 
 Placar da partida:
-• Gambeta: 300 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+• Gambeta: 1100 pontos | Kills: 1 | Mortes: 1 | Suicídios: 1
 • Vladimir_Puttin: 0 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Osama_bin_laden: 3900 pontos | Kills: 0 | Mortes: 1 | Suicídios: 0
-• Donald_Trump: 14900 pontos | Kills: 1 | Mortes: 0 | Suicídios: 0
+• Osama_bin_laden: 1100 pontos | Kills: 0 | Mortes: 1 | Suicídios: 0
+• Donald_Trump: 11900 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
 
 🎬 PARTIDA 5
 ---------------------------------------------
 A arena foi aberta e os competidores entraram buscando espaço, poder-ups e eliminações.
 
 Momentos decisivos:
-• Aos 4.56s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 69.5s, Donald_Trump se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 105.95s, Gambeta se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-
-🏆 Resultado da partida: Osama_bin_laden saiu como vencedor.
-
-Placar da partida:
-• Gambeta: 2500 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Vladimir_Puttin: 100 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Osama_bin_laden: 12500 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
-• Donald_Trump: 2800 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-
-🎬 PARTIDA 6
----------------------------------------------
-A arena foi aberta e os competidores entraram buscando espaço, poder-ups e eliminações.
-
-Momentos decisivos:
-• Aos 4.01s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 38.11s, Gambeta se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 111.87s, Donald_Trump acertou em cheio e eliminou Osama_bin_laden da partida.
-
-🏆 Resultado da partida: Donald_Trump saiu como vencedor.
-
-Placar da partida:
-• Gambeta: 600 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Vladimir_Puttin: 0 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Osama_bin_laden: 5400 pontos | Kills: 0 | Mortes: 1 | Suicídios: 0
-• Donald_Trump: 14050 pontos | Kills: 1 | Mortes: 0 | Suicídios: 0
-
-🎬 PARTIDA 7
----------------------------------------------
-A arena foi aberta e os competidores entraram buscando espaço, poder-ups e eliminações.
-
-Momentos decisivos:
-• Aos 4.74s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-
-🏆 Resultado da partida: Gambeta saiu como vencedor.
-
-Placar da partida:
-• Gambeta: 4500 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
-• Vladimir_Puttin: 100 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Osama_bin_laden: 2000 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
-• Donald_Trump: 3700 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
-
-🎬 PARTIDA 8
----------------------------------------------
-A arena foi aberta e os competidores entraram buscando espaço, poder-ups e eliminações.
-
-Momentos decisivos:
-• Aos 4.48s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 39.3s, Osama_bin_laden se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 53.67s, Gambeta se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-
-🏆 Resultado da partida: Donald_Trump saiu como vencedor.
-
-Placar da partida:
-• Gambeta: 1800 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Vladimir_Puttin: 100 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Osama_bin_laden: 800 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Donald_Trump: 13100 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
-
-🎬 PARTIDA 9
----------------------------------------------
-A arena foi aberta e os competidores entraram buscando espaço, poder-ups e eliminações.
-
-Momentos decisivos:
-• Aos 4.47s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 9.27s, Gambeta se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 39.89s, Osama_bin_laden se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 4.35s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 9.31s, Gambeta se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 42.43s, Osama_bin_laden se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
 
 🏆 Resultado da partida: Donald_Trump saiu como vencedor.
 
 Placar da partida:
 • Gambeta: 300 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
 • Vladimir_Puttin: 100 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Osama_bin_laden: 800 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Donald_Trump: 12150 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
+• Osama_bin_laden: 500 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+• Donald_Trump: 12200 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
+
+🎬 PARTIDA 7
+---------------------------------------------
+A arena foi aberta e os competidores entraram buscando espaço, poder-ups e eliminações.
+
+Momentos decisivos:
+• Aos 6.03s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 53.41s, Gambeta se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 119.87s, Donald_Trump se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+
+🏆 Resultado da partida: Osama_bin_laden saiu como vencedor.
+
+Placar da partida:
+• Gambeta: 1650 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+• Vladimir_Puttin: 100 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+• Osama_bin_laden: 12850 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
+• Donald_Trump: 3100 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+
+🎬 PARTIDA 8
+---------------------------------------------
+A arena foi aberta e os competidores entraram buscando espaço, poder-ups e eliminações.
+
+Momentos decisivos:
+• Aos 4.29s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 48.77s, Osama_bin_laden se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+
+🏆 Resultado da partida: Donald_Trump saiu como vencedor.
+
+Placar da partida:
+• Gambeta: 2950 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
+• Vladimir_Puttin: 0 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+• Osama_bin_laden: 1400 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+• Donald_Trump: 4500 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
+
+🎬 PARTIDA 9
+---------------------------------------------
+A arena foi aberta e os competidores entraram buscando espaço, poder-ups e eliminações.
+
+Momentos decisivos:
+• Aos 4.54s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 19.31s, Osama_bin_laden acertou em cheio e eliminou Gambeta da partida.
+• Aos 69.82s, Osama_bin_laden se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+
+🏆 Resultado da partida: Donald_Trump saiu como vencedor.
+
+Placar da partida:
+• Gambeta: 900 pontos | Kills: 0 | Mortes: 1 | Suicídios: 0
+• Vladimir_Puttin: 100 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+• Osama_bin_laden: 3350 pontos | Kills: 1 | Mortes: 1 | Suicídios: 1
+• Donald_Trump: 13050 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
 
 🎬 PARTIDA 10
 ---------------------------------------------
 A arena foi aberta e os competidores entraram buscando espaço, poder-ups e eliminações.
 
 Momentos decisivos:
-• Aos 4.0s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 74.86s, Gambeta se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
-• Aos 95.48s, Donald_Trump se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 4.13s, Vladimir_Puttin se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 13.23s, Donald_Trump se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
+• Aos 54.72s, Osama_bin_laden se complicou com a própria bomba e acabou cometendo suicídio dentro da arena.
 
-🏆 Resultado da partida: Osama_bin_laden saiu como vencedor.
+🏆 Resultado da partida: Gambeta saiu como vencedor.
 
 Placar da partida:
-• Gambeta: 1800 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Vladimir_Puttin: 0 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
-• Osama_bin_laden: 12700 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
-• Donald_Trump: 2550 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+• Gambeta: 12200 pontos | Kills: 0 | Mortes: 0 | Suicídios: 0
+• Vladimir_Puttin: 100 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+• Osama_bin_laden: 200 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
+• Donald_Trump: 100 pontos | Kills: 0 | Mortes: 1 | Suicídios: 1
 
