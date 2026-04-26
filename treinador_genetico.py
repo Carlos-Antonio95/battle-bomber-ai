@@ -46,6 +46,14 @@ CHANCE_ATAQUE_MAX = 0.60
 DISTANCIA_PERSEGUIR_MIN = 2
 DISTANCIA_PERSEGUIR_MAX = 7
 
+# Novo gene: distância máxima para tentar bloqueio tático de rota
+DISTANCIA_BLOQUEIO_MIN = 3
+DISTANCIA_BLOQUEIO_MAX = 8
+
+# Novo gene: chance de plantar bomba no ponto de bloqueio tático
+CHANCE_BLOQUEIO_MIN = 0.20
+CHANCE_BLOQUEIO_MAX = 0.70
+
 #tempo para ele fugir em casa de travar ou perigo iminente  define com quantos segundos restantes a IA entra em fuga emergencial
 TEMPO_PERIGO_IMINENTE_MIN = 0.45
 TEMPO_PERIGO_IMINENTE_MAX = 1.20
@@ -117,6 +125,14 @@ def criar_gene():
         # Gene de perseguição:
         # define até qual distância a IA tenta perseguir outro jogador
         "distancia_perseguir": random.randint(DISTANCIA_PERSEGUIR_MIN, DISTANCIA_PERSEGUIR_MAX),
+
+        # Gene de bloqueio tático:
+        # define até qual distância a IA tenta se posicionar para bloquear a rota do inimigo
+        "distancia_bloqueio": random.randint(DISTANCIA_BLOQUEIO_MIN, DISTANCIA_BLOQUEIO_MAX),
+
+        # Gene de bloqueio tático:
+        # controla a chance de colocar bomba no ponto crítico de bloqueio
+        "chance_bloqueio": round(random.uniform(CHANCE_BLOQUEIO_MIN, CHANCE_BLOQUEIO_MAX), 2),
 
         "tempo_perigo_iminente": round(random.uniform(TEMPO_PERIGO_IMINENTE_MIN, TEMPO_PERIGO_IMINENTE_MAX), 2),
         "max_passos_fuga": random.randint(MAX_PASSOS_FUGA_MIN, MAX_PASSOS_FUGA_MAX),
@@ -283,6 +299,14 @@ def mutar(gene):
     if random.random() < 0.5:
         novo["distancia_perseguir"] += random.randint(-1, 1)
 
+    # Novo gene de bloqueio tático
+    if random.random() < 0.5:
+        novo["distancia_bloqueio"] += random.randint(-1, 1)
+
+    # Novo gene de chance de bloqueio tático
+    if random.random() < 0.5:
+        novo["chance_bloqueio"] += random.uniform(-0.05, 0.05)
+
     if random.random() < 0.5:
         novo["tempo_perigo_iminente"] += random.uniform(-0.10, 0.10)
 
@@ -302,6 +326,8 @@ def mutar(gene):
     novo["cautela_bomba"] = max(CAUTELA_BOMBA_MIN, min(CAUTELA_BOMBA_MAX, novo["cautela_bomba"]))
     novo["chance_ataque"] = max(CHANCE_ATAQUE_MIN, min(CHANCE_ATAQUE_MAX, novo["chance_ataque"]))
     novo["distancia_perseguir"] = max(DISTANCIA_PERSEGUIR_MIN, min(DISTANCIA_PERSEGUIR_MAX, novo["distancia_perseguir"]))
+    novo["distancia_bloqueio"] = max(DISTANCIA_BLOQUEIO_MIN, min(DISTANCIA_BLOQUEIO_MAX, novo["distancia_bloqueio"]))
+    novo["chance_bloqueio"] = max(CHANCE_BLOQUEIO_MIN, min(CHANCE_BLOQUEIO_MAX, novo["chance_bloqueio"]))
     novo["tempo_perigo_iminente"] = max(TEMPO_PERIGO_IMINENTE_MIN,min(TEMPO_PERIGO_IMINENTE_MAX, novo["tempo_perigo_iminente"]))
     novo["max_passos_fuga"] = max(MAX_PASSOS_FUGA_MIN, min(MAX_PASSOS_FUGA_MAX, novo["max_passos_fuga"]))
     novo["margem_tempo_base"] = max(MARGEM_TEMPO_BASE_MIN, min(MARGEM_TEMPO_BASE_MAX, novo["margem_tempo_base"]))
@@ -312,6 +338,7 @@ def mutar(gene):
     novo["chance_bomba"] = round(novo["chance_bomba"], 2)
     novo["cautela_bomba"] = round(novo["cautela_bomba"], 2)
     novo["chance_ataque"] = round(novo["chance_ataque"], 2)
+    novo["chance_bloqueio"] = round(novo["chance_bloqueio"], 2)
     novo["tempo_perigo_iminente"] = round(novo["tempo_perigo_iminente"], 2)
     novo["margem_tempo_base"] = round(novo["margem_tempo_base"], 2)
     
@@ -332,6 +359,8 @@ def cruzar(g1, g2):
         "cautela_bomba": random.choice([g1["cautela_bomba"], g2["cautela_bomba"]]),
         "chance_ataque": random.choice([g1["chance_ataque"], g2["chance_ataque"]]),
         "distancia_perseguir": random.choice([g1["distancia_perseguir"], g2["distancia_perseguir"]]),
+        "distancia_bloqueio": random.choice([g1["distancia_bloqueio"], g2["distancia_bloqueio"]]),
+        "chance_bloqueio": random.choice([g1["chance_bloqueio"], g2["chance_bloqueio"]]),
         "tempo_perigo_iminente": random.choice([g1["tempo_perigo_iminente"], g2["tempo_perigo_iminente"]]) ,
         "max_passos_fuga": random.choice([g1["max_passos_fuga"], g2["max_passos_fuga"]]),
 
@@ -383,6 +412,12 @@ def salvar_relatorio_json(historico, melhores_gerais):
             "distancia_perseguir_min": DISTANCIA_PERSEGUIR_MIN,
             "distancia_perseguir_max": DISTANCIA_PERSEGUIR_MAX,
 
+            "distancia_bloqueio_min": DISTANCIA_BLOQUEIO_MIN,
+            "distancia_bloqueio_max": DISTANCIA_BLOQUEIO_MAX,
+
+            "chance_bloqueio_min": CHANCE_BLOQUEIO_MIN,
+            "chance_bloqueio_max": CHANCE_BLOQUEIO_MAX,
+
             "tempo_perigo_iminente_min": TEMPO_PERIGO_IMINENTE_MIN,
             "tempo_perigo_iminente_max": TEMPO_PERIGO_IMINENTE_MAX,
 
@@ -427,6 +462,8 @@ def salvar_relatorio_csv(historico):
             "cautela_bomba",
             "chance_ataque",
             "distancia_perseguir",
+            "distancia_bloqueio",
+            "chance_bloqueio",
             "tempo_perigo_iminente",
             "max_passos_fuga",
             "margem_tempo_base",
@@ -452,6 +489,8 @@ def salvar_relatorio_csv(historico):
                 gene["cautela_bomba"],
                 gene["chance_ataque"],
                 gene["distancia_perseguir"],
+                gene["distancia_bloqueio"],
+                gene["chance_bloqueio"],
                 gene["tempo_perigo_iminente"],
                 gene["max_passos_fuga"],
                 gene["margem_tempo_base"],
