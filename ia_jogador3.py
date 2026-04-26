@@ -2,7 +2,7 @@ import random
 import json
 from collections import deque
 
-with open("genes_jogador1.json", "r") as f:
+with open("genes_jogador3.json", "r") as f:
     GENES = json.load(f)
 
 DIRECOES = [

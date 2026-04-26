@@ -4,7 +4,11 @@ import importlib
 import random
 import hashlib
 import json
+import os
 
+MODO_TREINO = os.getenv("MODO_TREINO") == "1"
+MODO_CAMPEONATO = os.getenv("MODO_CAMPEONATO") == "1"
+ARQUIVO_RESULTADO = os.getenv("ARQUIVO_RESULTADO", "resultado_treino.json")
 def gerar_checksum_dados(obj):
     def simplificar(o):
         if isinstance(o, list):
@@ -448,6 +452,8 @@ p3 = "Osama_bin_laden"
 p4 = "Donald_Trump"
 p5 = "ia_jogador1"
 
+NOMES_JOGADORES = [p1, p2, p3, p4, p5]
+
 ia_1 = importlib.import_module(mod1).decidir_acao
 ia_2 = importlib.import_module(mod2).decidir_acao
 ia_3 = importlib.import_module(mod3).decidir_acao
@@ -468,6 +474,13 @@ pontos = [0, 0, 0, 0, 0]
 tempo_restante = TEMPO_PARTIDA
 vencedor_final = None
 mensagem_vitoria = None
+resultado_salvo = False
+tempo_vivo = [0, 0, 0, 0, 0]
+bombas_colocadas = [0, 0, 0, 0, 0]
+kills = [0, 0, 0, 0, 0]
+mortes = [0, 0, 0, 0, 0]
+suicidios = [0, 0, 0, 0, 0]
+eventos_morte = []
 
 clock = pygame.time.Clock()
 fullscreen = False
@@ -489,22 +502,28 @@ while True:
 
     if vencedor_final is None:
         tempo_restante -= delta
-        if tempo_restante <= 0 and vencedor_final is None:
+
+        for i, p in enumerate(players):
+            if p.ativo:
+                tempo_vivo[i] += delta
+
+        if tempo_restante <= 0:
             tempo_restante = 0
             vencedor_final = pontos.index(max(pontos))
             nome_vencedor = ""
-            if vencedor_final==0:
-                nome_vencedor = p1
-            if vencedor_final==1:
-                nome_vencedor = p2
-            if vencedor_final==2:
-                nome_vencedor = p3
-            if vencedor_final==3:
-                nome_vencedor = p4
-            if vencedor_final==4:
-                nome_vencedor = p5
-            mensagem_vitoria = f"Tempo esgotado! {nome_vencedor} venceu!"
 
+            if vencedor_final == 0:
+                nome_vencedor = p1
+            if vencedor_final == 1:
+                nome_vencedor = p2
+            if vencedor_final == 2:
+                nome_vencedor = p3
+            if vencedor_final == 3:
+                nome_vencedor = p4
+            if vencedor_final == 4:
+                nome_vencedor = p5
+
+            mensagem_vitoria = f"Tempo esgotado! {nome_vencedor} venceu!"
     for p in players:
         if not p.ativo:
             continue
@@ -523,6 +542,7 @@ while True:
                         nova = Bomba(p.grid_x, p.grid_y, TEMPO_EXPLOSAO, p.bomba_nivel, p)
                         bombas.append(nova)
                         p.bombas.append(nova)
+                        bombas_colocadas[players.index(p)] += 1
             nx, ny = p.grid_x + dx, p.grid_y + dy
             if 0 <= nx < COLS and 0 <= ny < ROWS and mapa[ny][nx] in [0, 3, 4]:
                 existe_bomba = any(b.x == nx and b.y == ny and not b.explodida for b in bombas)
@@ -553,18 +573,55 @@ while True:
                 for p in players:
                     if p.ativo and (p.grid_x, p.grid_y) in b.fogo:
                         p.ativo = False
-                        if b.dono == p:
-                            pontos[players.index(p)] -= PONTOS_MATAR_JOGADOR
-                            if pontos[players.index(p)]<0:
-                                pontos[players.index(p)]=0;
 
+                        idx_morto = players.index(p)
+                        mortes[idx_morto] += 1
+
+                        # ⚠️ PROTEÇÃO IMPORTANTE
+                        if b.dono is not None:
+                            idx_dono = players.index(b.dono)
+
+                            if b.dono == p:
+                                # suicídio
+                                pontos[idx_dono] -= PONTOS_MATAR_JOGADOR
+                                if pontos[idx_dono] < 0:
+                                    pontos[idx_dono] = 0
+
+                                suicidios[idx_dono] += 1
+                                eventos_morte.append({
+                                    "tempo": round(TEMPO_PARTIDA - tempo_restante, 2),
+                                    "tipo": "suicidio",
+                                    "morto": idx_morto,
+                                    "nome_morto": NOMES_JOGADORES[idx_morto],
+                                    "assassino": idx_dono,
+                                    "nome_assassino": NOMES_JOGADORES[idx_dono]
+                                })
+
+                                print(f"SUICÍDIO -> jogador: {idx_morto}")
+                            else:
+                                # kill normal
+                                pontos[idx_dono] += PONTOS_MATAR_JOGADOR
+                                kills[idx_dono] += 1
+                                eventos_morte.append({
+                                    "tempo": round(TEMPO_PARTIDA - tempo_restante, 2),
+                                    "tipo": "kill",
+                                    "morto": idx_morto,
+                                    "nome_morto": NOMES_JOGADORES[idx_morto],
+                                    "assassino": idx_dono,
+                                    "nome_assassino": NOMES_JOGADORES[idx_dono]
+                                })
+
+                                print(f"KILL -> dono: {idx_dono} matou jogador: {idx_morto}")
                         else:
-                            pontos[players.index(b.dono)] += PONTOS_MATAR_JOGADOR
-                        nomes = [p1, p2, p3, p4]
-
-                        nome = nomes[players.index(p)]
-                        print(f"{nome} morreu!")
-
+                            eventos_morte.append({
+                                "tempo": round(TEMPO_PARTIDA - tempo_restante, 2),
+                                "tipo": "morte_sem_dono",
+                                "morto": idx_morto,
+                                "nome_morto": NOMES_JOGADORES[idx_morto],
+                                "assassino": None,
+                                "nome_assassino": None
+                            })
+                            print(f"MORTE SEM DONO -> jogador: {idx_morto}")
     if vencedor_final is None:
         vivos = [p for p in players if p.ativo]
         if len(vivos) == 1:
@@ -580,6 +637,7 @@ while True:
                 nome_vencedor = p4
             if vencedor_final==4:
                 nome_vencedor = p5
+            
             mensagem_vitoria = f"Jogador {nome_vencedor} VENCEU!"
 
     screen.fill(COLOR_BG)
@@ -592,17 +650,26 @@ while True:
         rect = texto.get_rect(center=(WIDTH // 2, HEIGHT // 2 + HUD_HEIGHT // 2))
         screen.blit(texto, rect)
     pygame.display.flip()
-
     if vencedor_final is not None:
-        # Apenas desenha a tela congelada com a mensagem
-        # screen.fill(COLOR_BG)
-        # desenhar_hud(pontos, tempo_restante)
-        # desenhar_mapa()
-        # desenhar_bombas(bombas)
-        # desenhar_jogadores(players)
-        if mensagem_vitoria:
-            texto = font_vitoria.render(mensagem_vitoria, True, (255, 255, 255))
-            rect = texto.get_rect(center=(WIDTH // 2, HEIGHT // 2 + HUD_HEIGHT // 2))
-            screen.blit(texto, rect)
-        pygame.display.flip()
-        continue  # pula o restante do loop para congelar o jogo
+
+        if (MODO_TREINO or MODO_CAMPEONATO) and not resultado_salvo:
+            qtd_players = len(players)
+            resultado = {
+                "nomes_jogadores": NOMES_JOGADORES[:qtd_players],
+                "pontos": pontos[:qtd_players],
+                "vencedor": vencedor_final,
+                "tempo_vivo": tempo_vivo[:qtd_players],
+                "bombas_colocadas": bombas_colocadas[:qtd_players],
+                "kills": kills[:qtd_players],
+                "mortes": mortes[:qtd_players],
+                "suicidios": suicidios[:qtd_players],
+                "eventos_morte": eventos_morte
+            }
+
+            with open(ARQUIVO_RESULTADO, "w", encoding="utf-8") as f:
+                json.dump(resultado, f, indent=4, ensure_ascii=False)
+
+            resultado_salvo = True
+            pygame.quit()
+            sys.exit()
+            continue  # pula o restante do loop para congelar o jogo

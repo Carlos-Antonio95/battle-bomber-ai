@@ -42,3 +42,13 @@ Jogo 44: Recompensa acumulada 17064.77, Acoes 1524
 Jogo 45: Recompensa acumulada 26400.40, Acoes 2258
 Jogo 46: Recompensa acumulada 968.79, Acoes 105
 Jogo 47: Recompensa acumulada 597.44, Acoes 64
+Jogo 48: Recompensa acumulada 20414.88, Acoes 1916
+Jogo 49: Recompensa acumulada 17548.84, Acoes 1609
+Jogo 50: Recompensa acumulada 53523.65, Acoes 4444
+Jogo 51: Recompensa acumulada 17226.42, Acoes 1597
+Jogo 52: Recompensa acumulada 14757.50, Acoes 1446
+Jogo 53: Recompensa acumulada 32998.01, Acoes 3004
+Jogo 54: Recompensa acumulada 34852.03, Acoes 2256
+Jogo 55: Recompensa acumulada 14583.57, Acoes 1356
+Jogo 56: Recompensa acumulada 13085.23, Acoes 1308
+Jogo 57: Recompensa acumulada 30239.38, Acoes 3067

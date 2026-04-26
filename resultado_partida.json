@@ -1,0 +1,71 @@
+{
+    "nomes_jogadores": [
+        "Gambeta",
+        "Vladimir_Puttin",
+        "Osama_bin_laden",
+        "Donald_Trump"
+    ],
+    "pontos": [
+        1800,
+        0,
+        12700,
+        2550
+    ],
+    "vencedor": 2,
+    "tempo_vivo": [
+        74.86099999999982,
+        4.000999999999994,
+        95.48300000000056,
+        95.48300000000056
+    ],
+    "bombas_colocadas": [
+        16,
+        1,
+        29,
+        30
+    ],
+    "kills": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "mortes": [
+        1,
+        1,
+        0,
+        1
+    ],
+    "suicidios": [
+        1,
+        1,
+        0,
+        1
+    ],
+    "eventos_morte": [
+        {
+            "tempo": 4.0,
+            "tipo": "suicidio",
+            "morto": 1,
+            "nome_morto": "Vladimir_Puttin",
+            "assassino": 1,
+            "nome_assassino": "Vladimir_Puttin"
+        },
+        {
+            "tempo": 74.86,
+            "tipo": "suicidio",
+            "morto": 0,
+            "nome_morto": "Gambeta",
+            "assassino": 0,
+            "nome_assassino": "Gambeta"
+        },
+        {
+            "tempo": 95.48,
+            "tipo": "suicidio",
+            "morto": 3,
+            "nome_morto": "Donald_Trump",
+            "assassino": 3,
+            "nome_assassino": "Donald_Trump"
+        }
+    ]
+}
