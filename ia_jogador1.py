@@ -127,8 +127,4 @@ def decidir_acao(player,mapa,players,bombas,*args):
     if moves:
         return random.choice(moves)
 
-<<<<<<< HEAD
     return "parado"
-=======
-    return "parado"
->>>>>>> 5ba6ebeda2be5d025c1b7515597e306ba68fa5f3
