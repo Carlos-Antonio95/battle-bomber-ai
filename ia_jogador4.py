@@ -11,7 +11,6 @@ DIRECOES = [
     ("esquerda", -1, 0),
     ("direita", 1, 0),
 ]
-
 memoria = {
     "fugindo": 0,
     "acabou_de_colocar_bomba": False,
@@ -19,11 +18,14 @@ memoria = {
     "bomba_y": None,
     "bomba_nivel": 1,
     "jogadores": [],
-    "rota_fuga": []
+    "rota_fuga": [],
+
+    # Anti-loop: evita ficar subindo/descendo sem decisão
+    "ultima_posicao": None,
+    "ultima_acao": None,
+    "manter_acao": 0
 }
-
-
-TEMPO_PASSO_ESTIMADO = 0.07
+TEMPO_PASSO_ESTIMADO = 0.13
 MAX_PASSOS_FUGA = 8
 
 def posicao_livre(x, y, mapa, bombas):
@@ -54,6 +56,50 @@ def posicao_livre_sem_jogador(x, y, mapa, bombas, player):
             return False
 
     return True
+
+def proxima_posicao(player, acao):
+    for nome, dx, dy in DIRECOES:
+        if nome == acao:
+            return player.grid_x + dx, player.grid_y + dy
+
+    return player.grid_x, player.grid_y
+
+def acao_oposta(acao):
+    opostas = {
+        "cima": "baixo",
+        "baixo": "cima",
+        "esquerda": "direita",
+        "direita": "esquerda"
+    }
+
+    return opostas.get(acao)
+
+
+def pode_manter_acao(player, acao, mapa, bombas):
+    if acao is None or acao == "parado":
+        return False
+
+    nx, ny = proxima_posicao(player, acao)
+
+    if not posicao_livre(nx, ny, mapa, bombas):
+        return False
+
+    if posicao_em_perigo(nx, ny, bombas, mapa):
+        return False
+
+    return True
+
+
+def registrar_acao(player, acao):
+    memoria["ultima_posicao"] = (player.grid_x, player.grid_y)
+    memoria["ultima_acao"] = acao
+
+    if acao != "parado":
+        memoria["manter_acao"] = 2
+    else:
+        memoria["manter_acao"] = 0
+
+    return acao
 
 def contar_saidas_seguras(x, y, mapa, bombas):
     mapa_perigo = criar_mapa_perigo(mapa, bombas)
@@ -203,9 +249,17 @@ def movimento_aleatorio(player, mapa, bombas):
                 opcoes.append(acao)
 
     if opcoes:
-        return random.choice(opcoes)
+        ultima_acao = memoria.get("ultima_acao")
+        oposta = acao_oposta(ultima_acao)
 
-    return "parado"
+        opcoes_filtradas = [acao for acao in opcoes if acao != oposta]
+
+        if opcoes_filtradas:
+            return registrar_acao(player, random.choice(opcoes_filtradas))
+
+        return registrar_acao(player, random.choice(opcoes))
+
+    return registrar_acao(player, "parado")
 
 def pontuar_posicao_segura(x, y, mapa, bombas):
     pontos = 0
@@ -362,7 +416,7 @@ def posicao_segura_no_tempo(x, y, passos, bombas, mapa):
     if tempo_perigo is None:
         return True
 
-    margem_tempo = 0.35 * cautela
+    margem_tempo = 0.40 * cautela
 
     return tempo_perigo > tempo_chegada + margem_tempo
 
@@ -430,8 +484,7 @@ def bfs_fuga_segura(player, mapa, bombas):
     return None
 
 def fugir_da_bomba(player, mapa, bombas):
-    acao_bfs = bfs_fuga_segura(player, mapa, bombas)
-    # segue rota antiga somente se ainda for segura
+     # segue rota antiga somente se ainda for segura
     if memoria.get("rota_fuga"):
         acao = memoria["rota_fuga"][0]
         nx, ny = proxima_posicao(player, acao)
@@ -445,6 +498,8 @@ def fugir_da_bomba(player, mapa, bombas):
 
         # rota ficou perigosa, recalcula
         memoria["rota_fuga"] = []
+
+    acao_bfs = bfs_fuga_segura(player, mapa, bombas)
 
     if acao_bfs:
         memoria["acabou_de_colocar_bomba"] = False
@@ -709,11 +764,136 @@ def perigo_iminente(player, mapa, bombas):
     if tempo is None:
         return False
 
-    # Só força fuga quando estiver MUITO perto de explodir
-    return tempo <= 0.45
+    limite = GENES.get("tempo_perigo_iminente", 0.45)
 
+    return tempo <= limite
+
+def caminho_livre_ate_inimigo(player, inimigo, mapa):
+    x1, y1 = player.grid_x, player.grid_y
+    x2, y2 = inimigo.grid_x, inimigo.grid_y
+
+    if x1 == x2:
+        passo = 1 if y2 > y1 else -1
+        for y in range(y1 + passo, y2, passo):
+            if mapa[y][x1] not in [0, 3, 4]:
+                return False
+        return True
+
+    if y1 == y2:
+        passo = 1 if x2 > x1 else -1
+        for x in range(x1 + passo, x2, passo):
+            if mapa[y1][x] not in [0, 3, 4]:
+                return False
+        return True
+
+    return False
+
+def inimigo_no_raio(player, jogadores, mapa):
+    alcance = 1 + (player.bomba_nivel - 1) * 2
+
+    for inimigo in jogadores:
+        if inimigo is player or not inimigo.ativo:
+            continue
+
+        dist = abs(player.grid_x - inimigo.grid_x) + abs(player.grid_y - inimigo.grid_y)
+
+        if dist <= alcance:
+            if caminho_livre_ate_inimigo(player, inimigo, mapa):
+                return True
+
+    return False
+
+def distancia_inimigo_mais_proximo(player, jogadores):
+    menor = None
+
+    for inimigo in jogadores:
+        if inimigo is player or not inimigo.ativo:
+            continue
+
+        dist = abs(player.grid_x - inimigo.grid_x) + abs(player.grid_y - inimigo.grid_y)
+
+        if menor is None or dist < menor:
+            menor = dist
+
+    return menor
+
+def perseguir_inimigo(player, mapa, bombas, jogadores):
+    alvo = None
+    menor_dist = None
+
+    for inimigo in jogadores:
+        if inimigo is player or not inimigo.ativo:
+            continue
+
+        dist = abs(player.grid_x - inimigo.grid_x) + abs(player.grid_y - inimigo.grid_y)
+
+        if menor_dist is None or dist < menor_dist:
+            menor_dist = dist
+            alvo = inimigo
+
+    if alvo is None:
+        return None
+
+    opcoes = []
+
+    for acao, dx, dy in DIRECOES:
+        nx = player.grid_x + dx
+        ny = player.grid_y + dy
+
+        if not posicao_livre(nx, ny, mapa, bombas):
+            continue
+
+        if posicao_em_perigo(nx, ny, bombas, mapa):
+            continue
+
+        nova_dist = abs(nx - alvo.grid_x) + abs(ny - alvo.grid_y)
+
+        penalidade = 0
+
+        if memoria.get("ultima_posicao") == (nx, ny):
+            penalidade += 2
+
+        if acao == acao_oposta(memoria.get("ultima_acao")):
+            penalidade += 1
+
+        opcoes.append((nova_dist + penalidade, acao))
+
+    if opcoes:
+        opcoes.sort()
+        return registrar_acao(player, opcoes[0][1])
+
+    return None
+
+def ataque_basico(player, mapa, jogadores, bombas):
+
+    # 💣 ATAQUE DIRETO
+    if inimigo_no_raio(player, jogadores, mapa):
+        if tem_rota_fuga_apos_bomba(player, mapa, bombas):
+            if random.random() < GENES.get("chance_ataque", 0.20):
+
+                memoria["fugindo"] = GENES.get("tempo_fuga", 35)
+                memoria["acabou_de_colocar_bomba"] = True
+                memoria["bomba_x"] = player.grid_x
+                memoria["bomba_y"] = player.grid_y
+                memoria["bomba_nivel"] = player.bomba_nivel
+                memoria["rota_fuga"] = []
+
+                return "bomba"
+
+    # 🎯 PERSEGUIÇÃO
+    dist = distancia_inimigo_mais_proximo(player, jogadores)
+
+    if dist is not None and dist <= GENES.get("distancia_perseguir", 5):
+        acao = perseguir_inimigo(player, mapa, bombas, jogadores)
+
+        if acao:
+            return acao
+
+    return None
 def decidir_acao(player, mapa, jogadores, bombas, tempo_restante, pontos, hud_info, self_state):
     memoria["jogadores"] = jogadores
+
+    # Primeiro limpa a memória da bomba se ela já explodiu/sumiu
     if memoria["bomba_x"] is not None and memoria["bomba_y"] is not None:
         bomba_ainda_existe = False
 
@@ -724,13 +904,27 @@ def decidir_acao(player, mapa, jogadores, bombas, tempo_restante, pontos, hud_in
 
         if not bomba_ainda_existe:
             limpar_memoria_bomba()
-    
+
+    # Mantém a última ação por pouco tempo apenas se não houver perigo.
+    # Isso reduz o loop de ficar subindo e descendo sem atrapalhar a fuga.
+    if not posicao_em_perigo(player.grid_x, player.grid_y, bombas, mapa) \
+       and not perigo_iminente(player, mapa, bombas):
+
+        if memoria.get("manter_acao", 0) > 0:
+            ultima = memoria.get("ultima_acao")
+
+            if pode_manter_acao(player, ultima, mapa, bombas):
+                memoria["manter_acao"] -= 1
+                return ultima
+            else:
+                memoria["manter_acao"] = 0
+
     # EMERGÊNCIA REAL: só foge se a explosão estiver quase acontecendo
     if perigo_iminente(player, mapa, bombas):
         memoria["fugindo"] = GENES.get("tempo_fuga", 35)
         memoria["rota_fuga"] = []
         return fugir_da_bomba(player, mapa, bombas)
-    
+
     # MODO FUGA
     if memoria["fugindo"] > 0:
         memoria["fugindo"] -= 1
@@ -753,6 +947,11 @@ def decidir_acao(player, mapa, jogadores, bombas, tempo_restante, pontos, hud_in
     acao_powerup = pegar_powerup_perto(player, mapa, bombas)
     if acao_powerup:
         return acao_powerup
+    
+    # 🔥 ATAQUE BÁSICO
+    acao_ataque = ataque_basico(player, mapa, jogadores, bombas)
+    if acao_ataque:
+        return acao_ataque
 
     # COLOCAR BOMBA
     if parede_destrutivel_perto(player, mapa) and tem_rota_fuga_apos_bomba(player, mapa, bombas):
