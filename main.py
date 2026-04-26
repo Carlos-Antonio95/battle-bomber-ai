@@ -471,6 +471,10 @@ tempo_restante = TEMPO_PARTIDA
 vencedor_final = None
 mensagem_vitoria = None
 resultado_salvo = False
+tempo_vivo = [0, 0, 0, 0, 0]
+bombas_colocadas = [0, 0, 0, 0, 0]
+kills = [0, 0, 0, 0, 0]
+mortes = [0, 0, 0, 0, 0]
 
 clock = pygame.time.Clock()
 fullscreen = False
@@ -492,22 +496,28 @@ while True:
 
     if vencedor_final is None:
         tempo_restante -= delta
-        if tempo_restante <= 0 and vencedor_final is None:
+
+        for i, p in enumerate(players):
+            if p.ativo:
+                tempo_vivo[i] += delta
+
+        if tempo_restante <= 0:
             tempo_restante = 0
             vencedor_final = pontos.index(max(pontos))
             nome_vencedor = ""
-            if vencedor_final==0:
-                nome_vencedor = p1
-            if vencedor_final==1:
-                nome_vencedor = p2
-            if vencedor_final==2:
-                nome_vencedor = p3
-            if vencedor_final==3:
-                nome_vencedor = p4
-            if vencedor_final==4:
-                nome_vencedor = p5
-            mensagem_vitoria = f"Tempo esgotado! {nome_vencedor} venceu!"
 
+            if vencedor_final == 0:
+                nome_vencedor = p1
+            if vencedor_final == 1:
+                nome_vencedor = p2
+            if vencedor_final == 2:
+                nome_vencedor = p3
+            if vencedor_final == 3:
+                nome_vencedor = p4
+            if vencedor_final == 4:
+                nome_vencedor = p5
+
+            mensagem_vitoria = f"Tempo esgotado! {nome_vencedor} venceu!"
     for p in players:
         if not p.ativo:
             continue
@@ -526,6 +536,7 @@ while True:
                         nova = Bomba(p.grid_x, p.grid_y, TEMPO_EXPLOSAO, p.bomba_nivel, p)
                         bombas.append(nova)
                         p.bombas.append(nova)
+                        bombas_colocadas[players.index(p)] += 1
             nx, ny = p.grid_x + dx, p.grid_y + dy
             if 0 <= nx < COLS and 0 <= ny < ROWS and mapa[ny][nx] in [0, 3, 4]:
                 existe_bomba = any(b.x == nx and b.y == ny and not b.explodida for b in bombas)
@@ -556,6 +567,7 @@ while True:
                 for p in players:
                     if p.ativo and (p.grid_x, p.grid_y) in b.fogo:
                         p.ativo = False
+                        mortes[players.index(p)] += 1
                         if b.dono == p:
                             pontos[players.index(p)] -= PONTOS_MATAR_JOGADOR
                             if pontos[players.index(p)]<0:
@@ -563,6 +575,7 @@ while True:
 
                         else:
                             pontos[players.index(b.dono)] += PONTOS_MATAR_JOGADOR
+                            kills[players.index(b.dono)] += 1
                         nomes = [p1, p2, p3, p4]
 
                         nome = nomes[players.index(p)]
@@ -599,8 +612,12 @@ while True:
 
         if MODO_TREINO and not resultado_salvo:
             resultado = {
-                "pontos": pontos,
-                "vencedor": vencedor_final
+            "pontos": pontos,
+            "vencedor": vencedor_final,
+            "tempo_vivo": tempo_vivo,
+            "bombas_colocadas": bombas_colocadas,
+            "kills": kills,
+            "mortes": mortes
             }
 
             with open("resultado_treino.json", "w") as f:

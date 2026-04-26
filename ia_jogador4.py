@@ -26,7 +26,7 @@ memoria = {
     "manter_acao": 0
 }
 TEMPO_PASSO_ESTIMADO = 0.13
-MAX_PASSOS_FUGA = 8
+MAX_PASSOS_FUGA = GENES.get("max_passos_fuga", 8)
 
 def posicao_livre(x, y, mapa, bombas):
     if y < 0 or y >= len(mapa) or x < 0 or x >= len(mapa[0]):
@@ -95,7 +95,7 @@ def registrar_acao(player, acao):
     memoria["ultima_acao"] = acao
 
     if acao != "parado":
-        memoria["manter_acao"] = 2
+        memoria["manter_acao"] = GENES.get("persistencia_movimento", 2)
     else:
         memoria["manter_acao"] = 0
 
@@ -416,7 +416,8 @@ def posicao_segura_no_tempo(x, y, passos, bombas, mapa):
     if tempo_perigo is None:
         return True
 
-    margem_tempo = 0.40 * cautela
+    margem_base = GENES.get("margem_tempo_base", 0.40)
+    margem_tempo = margem_base * cautela
 
     return tempo_perigo > tempo_chegada + margem_tempo
 

@@ -50,6 +50,14 @@ DISTANCIA_PERSEGUIR_MAX = 7
 TEMPO_PERIGO_IMINENTE_MIN = 0.45
 TEMPO_PERIGO_IMINENTE_MAX = 1.20
 
+MAX_PASSOS_FUGA_MIN = 6
+MAX_PASSOS_FUGA_MAX = 12
+
+MARGEM_TEMPO_BASE_MIN = 0.30
+MARGEM_TEMPO_BASE_MAX = 0.55
+
+PERSISTENCIA_MOVIMENTO_MIN = 1
+PERSISTENCIA_MOVIMENTO_MAX = 4
 
 # =========================
 # ENTRADAS DO USUÁRIO
@@ -110,7 +118,13 @@ def criar_gene():
         # define até qual distância a IA tenta perseguir outro jogador
         "distancia_perseguir": random.randint(DISTANCIA_PERSEGUIR_MIN, DISTANCIA_PERSEGUIR_MAX),
 
-        "tempo_perigo_iminente": round(random.uniform(TEMPO_PERIGO_IMINENTE_MIN, TEMPO_PERIGO_IMINENTE_MAX), 2)
+        "tempo_perigo_iminente": round(random.uniform(TEMPO_PERIGO_IMINENTE_MIN, TEMPO_PERIGO_IMINENTE_MAX), 2),
+        "max_passos_fuga": random.randint(MAX_PASSOS_FUGA_MIN, MAX_PASSOS_FUGA_MAX),
+
+        "margem_tempo_base": round(random.uniform(MARGEM_TEMPO_BASE_MIN, MARGEM_TEMPO_BASE_MAX), 2),
+
+        "persistencia_movimento": random.randint(PERSISTENCIA_MOVIMENTO_MIN, PERSISTENCIA_MOVIMENTO_MAX)
+        
     }
 
 
@@ -162,24 +176,37 @@ def avaliar_genes(genes_por_jogador):
 
     total_pontos = {j: 0 for j in JOGADORES}
     total_vitorias = {j: 0 for j in JOGADORES}
+    total_tempo_vivo = {j: 0 for j in JOGADORES}
+    total_kills = {j: 0 for j in JOGADORES}
+    total_bombas = {j: 0 for j in JOGADORES}
+    total_mortes = {j: 0 for j in JOGADORES}
 
-    # Roda várias partidas com o mesmo gene
-    # Isso evita escolher um gene ruim que venceu por sorte em apenas uma partida
     for _ in range(PARTIDAS_POR_GENE):
         resultado = rodar_partida()
 
         if resultado is None:
             continue
 
-        pontos = resultado["pontos"]
-        vencedor = resultado["vencedor"]
+        pontos = resultado.get("pontos", [0, 0, 0, 0])
+        vencedor = resultado.get("vencedor", None)
+
+        tempo_vivo = resultado.get("tempo_vivo", [0, 0, 0, 0])
+        kills = resultado.get("kills", [0, 0, 0, 0])
+        bombas_colocadas = resultado.get("bombas_colocadas", [0, 0, 0, 0])
+        mortes = resultado.get("mortes", [0, 0, 0, 0])
 
         for jogador in JOGADORES:
             index = jogador - 1
+
             total_pontos[jogador] += pontos[index]
 
             if vencedor == index:
                 total_vitorias[jogador] += 1
+
+            total_tempo_vivo[jogador] += tempo_vivo[index]
+            total_kills[jogador] += kills[index]
+            total_bombas[jogador] += bombas_colocadas[index]
+            total_mortes[jogador] += mortes[index]
 
         time.sleep(0.1)
 
@@ -189,20 +216,42 @@ def avaliar_genes(genes_por_jogador):
         media = total_pontos[jogador] / PARTIDAS_POR_GENE
         vitorias = total_vitorias[jogador]
 
-        # Fitness é a nota do gene.
-        # Pontos contam, mas vitória pesa bem mais.
-        fitness = media + (vitorias * 2000)
+        media_tempo_vivo = total_tempo_vivo[jogador] / PARTIDAS_POR_GENE
+        kills_total = total_kills[jogador]
+        bombas_total = total_bombas[jogador]
+        mortes_total = total_mortes[jogador]
+
+        # FITNESS MELHORADO
+        fitness = media
+        fitness += vitorias * 2000
+        fitness += media_tempo_vivo * 8
+        fitness += kills_total * 700
+        fitness -= mortes_total * 300
+
+        # Penaliza bomba demais sem resultado
+        bombas_sem_resultado = max(0, bombas_total - (kills_total * 3))
+        fitness -= bombas_sem_resultado * 40
+
+        # Penaliza quem nunca venceu
+        if vitorias == 0:
+            fitness -= 500
+
+        # Penaliza morte muito rápida
+        if media_tempo_vivo < 10:
+            fitness -= 800
 
         avaliacoes[jogador] = {
             "gene": genes_por_jogador[jogador],
             "media_pontos": media,
             "vitorias": vitorias,
+            "tempo_vivo_medio": media_tempo_vivo,
+            "kills": kills_total,
+            "bombas_colocadas": bombas_total,
+            "mortes": mortes_total,
             "fitness": fitness
         }
 
     return avaliacoes
-
-
 # =========================
 # MUTAÇÃO DO GENE
 # =========================
@@ -234,6 +283,15 @@ def mutar(gene):
     if random.random() < 0.5:
         novo["tempo_perigo_iminente"] += random.uniform(-0.10, 0.10)
 
+    if random.random() < 0.5:
+        novo["max_passos_fuga"] += random.randint(-1, 1)
+
+    if random.random() < 0.5:
+        novo["margem_tempo_base"] += random.uniform(-0.03, 0.03)
+
+    if random.random() < 0.5:
+        novo["persistencia_movimento"] += random.randint(-1, 1)
+
     # Garante que nenhum gene passe dos limites definidos
     novo["tempo_fuga"] = max(TEMPO_FUGA_MIN, min(TEMPO_FUGA_MAX, novo["tempo_fuga"]))
     novo["chance_bomba"] = max(CHANCE_BOMBA_MIN, min(CHANCE_BOMBA_MAX, novo["chance_bomba"]))
@@ -242,12 +300,18 @@ def mutar(gene):
     novo["chance_ataque"] = max(CHANCE_ATAQUE_MIN, min(CHANCE_ATAQUE_MAX, novo["chance_ataque"]))
     novo["distancia_perseguir"] = max(DISTANCIA_PERSEGUIR_MIN, min(DISTANCIA_PERSEGUIR_MAX, novo["distancia_perseguir"]))
     novo["tempo_perigo_iminente"] = max(TEMPO_PERIGO_IMINENTE_MIN,min(TEMPO_PERIGO_IMINENTE_MAX, novo["tempo_perigo_iminente"]))
+    novo["max_passos_fuga"] = max(MAX_PASSOS_FUGA_MIN, min(MAX_PASSOS_FUGA_MAX, novo["max_passos_fuga"]))
+    novo["margem_tempo_base"] = max(MARGEM_TEMPO_BASE_MIN, min(MARGEM_TEMPO_BASE_MAX, novo["margem_tempo_base"]))
+
+    novo["persistencia_movimento"] = max(PERSISTENCIA_MOVIMENTO_MIN, min(PERSISTENCIA_MOVIMENTO_MAX, novo["persistencia_movimento"]))
 
     # Arredonda genes decimais
     novo["chance_bomba"] = round(novo["chance_bomba"], 2)
     novo["cautela_bomba"] = round(novo["cautela_bomba"], 2)
     novo["chance_ataque"] = round(novo["chance_ataque"], 2)
     novo["tempo_perigo_iminente"] = round(novo["tempo_perigo_iminente"], 2)
+    novo["margem_tempo_base"] = round(novo["margem_tempo_base"], 2)
+    
 
     return novo
 
@@ -265,7 +329,12 @@ def cruzar(g1, g2):
         "cautela_bomba": random.choice([g1["cautela_bomba"], g2["cautela_bomba"]]),
         "chance_ataque": random.choice([g1["chance_ataque"], g2["chance_ataque"]]),
         "distancia_perseguir": random.choice([g1["distancia_perseguir"], g2["distancia_perseguir"]]),
-        "tempo_perigo_iminente": random.choice([g1["tempo_perigo_iminente"], g2["tempo_perigo_iminente"]]) 
+        "tempo_perigo_iminente": random.choice([g1["tempo_perigo_iminente"], g2["tempo_perigo_iminente"]]) ,
+        "max_passos_fuga": random.choice([g1["max_passos_fuga"], g2["max_passos_fuga"]]),
+
+        "margem_tempo_base": random.choice([g1["margem_tempo_base"], g2["margem_tempo_base"]]),
+
+        "persistencia_movimento": random.choice([g1["persistencia_movimento"], g2["persistencia_movimento"]])
     }
 
     return mutar(filho)
@@ -312,7 +381,16 @@ def salvar_relatorio_json(historico, melhores_gerais):
             "distancia_perseguir_max": DISTANCIA_PERSEGUIR_MAX,
 
             "tempo_perigo_iminente_min": TEMPO_PERIGO_IMINENTE_MIN,
-            "tempo_perigo_iminente_max": TEMPO_PERIGO_IMINENTE_MAX
+            "tempo_perigo_iminente_max": TEMPO_PERIGO_IMINENTE_MAX,
+
+            "max_passos_fuga_min": MAX_PASSOS_FUGA_MIN,
+            "max_passos_fuga_max": MAX_PASSOS_FUGA_MAX,
+
+            "margem_tempo_base_min": MARGEM_TEMPO_BASE_MIN,
+            "margem_tempo_base_max": MARGEM_TEMPO_BASE_MAX,
+
+            "persistencia_movimento_min": PERSISTENCIA_MOVIMENTO_MIN,
+            "persistencia_movimento_max": PERSISTENCIA_MOVIMENTO_MAX
         },
         "historico": historico,
         "melhores_gerais": melhores_gerais
@@ -335,6 +413,10 @@ def salvar_relatorio_csv(historico):
             "jogador",
             "media_pontos",
             "vitorias",
+            "tempo_vivo_medio",
+            "kills",
+            "bombas_colocadas",
+            "mortes",
             "fitness",
             "tempo_fuga",
             "chance_bomba",
@@ -342,7 +424,10 @@ def salvar_relatorio_csv(historico):
             "cautela_bomba",
             "chance_ataque",
             "distancia_perseguir",
-            "tempo_perigo_iminente"
+            "tempo_perigo_iminente",
+            "max_passos_fuga",
+            "margem_tempo_base",
+            "persistencia_movimento"
         ])
 
         for item in historico:
@@ -353,6 +438,10 @@ def salvar_relatorio_csv(historico):
                 item["jogador"],
                 item["media_pontos"],
                 item["vitorias"],
+                item["tempo_vivo_medio"],
+                item["kills"],
+                item["bombas_colocadas"],
+                item["mortes"],
                 item["fitness"],
                 gene["tempo_fuga"],
                 gene["chance_bomba"],
@@ -360,10 +449,11 @@ def salvar_relatorio_csv(historico):
                 gene["cautela_bomba"],
                 gene["chance_ataque"],
                 gene["distancia_perseguir"],
-                gene["tempo_perigo_iminente"]
+                gene["tempo_perigo_iminente"],
+                gene["max_passos_fuga"],
+                gene["margem_tempo_base"],
+                gene["persistencia_movimento"]
             ])
-
-
 # =========================
 # GRÁFICO DE EVOLUÇÃO
 # =========================
@@ -434,6 +524,10 @@ def main():
                 "gene": melhor["gene"],
                 "media_pontos": melhor["media_pontos"],
                 "vitorias": melhor["vitorias"],
+                "tempo_vivo_medio": melhor["tempo_vivo_medio"],
+                "kills": melhor["kills"],
+                "bombas_colocadas": melhor["bombas_colocadas"],
+                "mortes": melhor["mortes"],
                 "fitness": melhor["fitness"]
             })
 

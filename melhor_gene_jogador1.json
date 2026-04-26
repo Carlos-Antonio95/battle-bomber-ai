@@ -1,14 +1,14 @@
 {
     "gene": {
-        "tempo_fuga": 20,
-        "chance_bomba": 0.32,
+        "tempo_fuga": 27,
+        "chance_bomba": 0.3,
         "margem_seguranca": 3,
-        "cautela_bomba": 1.37,
-        "chance_ataque": 0.37,
+        "cautela_bomba": 1.45,
+        "chance_ataque": 0.36,
         "distancia_perseguir": 2,
-        "tempo_perigo_iminente": 0.38
+        "tempo_perigo_iminente": 0.48
     },
-    "media_pontos": 6400.0,
-    "vitorias": 1,
-    "fitness": 8400.0
+    "media_pontos": 9466.666666666666,
+    "vitorias": 2,
+    "fitness": 13466.666666666666
 }
