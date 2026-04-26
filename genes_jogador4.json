@@ -1,5 +1,6 @@
 {
-    "tempo_fuga": 25,
-    "chance_bomba": 0.23,
-    "margem_seguranca": 0
+    "tempo_fuga": 20,
+    "chance_bomba": 0.15,
+    "margem_seguranca": 1,
+    "cautela_bomba": 0.97
 }

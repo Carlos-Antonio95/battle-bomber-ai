@@ -14,14 +14,17 @@ ARQUIVO_GRAFICO = "grafico_treino.png"
 JOGADORES = [1, 2, 3, 4]
 TAMANHO_POPULACAO = 10
 
-TEMPO_FUGA_MIN = 15
-TEMPO_FUGA_MAX = 55
+TEMPO_FUGA_MIN = 10
+TEMPO_FUGA_MAX = 80
 
 CHANCE_BOMBA_MIN = 0.08
-CHANCE_BOMBA_MAX = 0.35
+CHANCE_BOMBA_MAX = 0.50
 
 MARGEM_MIN = 0
 MARGEM_MAX = 3
+
+CAUTELA_BOMBA_MIN = 0.3
+CAUTELA_BOMBA_MAX = 2.0
 
 
 def perguntar_int(texto, minimo, padrao):
@@ -57,7 +60,8 @@ def criar_gene():
     return {
         "tempo_fuga": random.randint(TEMPO_FUGA_MIN, TEMPO_FUGA_MAX),
         "chance_bomba": round(random.uniform(CHANCE_BOMBA_MIN, CHANCE_BOMBA_MAX), 2),
-        "margem_seguranca": random.randint(MARGEM_MIN, MARGEM_MAX)
+        "margem_seguranca": random.randint(MARGEM_MIN, MARGEM_MAX),
+         "cautela_bomba": round(random.uniform(CAUTELA_BOMBA_MIN, CAUTELA_BOMBA_MAX), 2)
     }
 
 
@@ -141,20 +145,25 @@ def mutar(gene):
     if random.random() < 0.5:
         novo["margem_seguranca"] += random.randint(-1, 1)
 
+    if random.random() < 0.5:
+        novo["cautela_bomba"] += random.uniform(-0.15, 0.15)
+
     novo["tempo_fuga"] = max(TEMPO_FUGA_MIN, min(TEMPO_FUGA_MAX, novo["tempo_fuga"]))
     novo["chance_bomba"] = max(CHANCE_BOMBA_MIN, min(CHANCE_BOMBA_MAX, novo["chance_bomba"]))
     novo["margem_seguranca"] = max(MARGEM_MIN, min(MARGEM_MAX, novo["margem_seguranca"]))
+    novo["cautela_bomba"] = max(CAUTELA_BOMBA_MIN, min(CAUTELA_BOMBA_MAX, novo["cautela_bomba"]))
 
     novo["chance_bomba"] = round(novo["chance_bomba"], 2)
+    novo["cautela_bomba"] = round(novo["cautela_bomba"], 2)
 
     return novo
-
 
 def cruzar(g1, g2):
     filho = {
         "tempo_fuga": random.choice([g1["tempo_fuga"], g2["tempo_fuga"]]),
         "chance_bomba": random.choice([g1["chance_bomba"], g2["chance_bomba"]]),
-        "margem_seguranca": random.choice([g1["margem_seguranca"], g2["margem_seguranca"]])
+        "margem_seguranca": random.choice([g1["margem_seguranca"], g2["margem_seguranca"]]),
+        "cautela_bomba": random.choice([g1["cautela_bomba"], g2["cautela_bomba"]])
     }
 
     return mutar(filho)
@@ -165,7 +174,6 @@ def criar_populacoes():
         jogador: [criar_gene() for _ in range(TAMANHO_POPULACAO)]
         for jogador in JOGADORES
     }
-
 
 def salvar_relatorio_json(historico, melhores_gerais):
     relatorio = {
@@ -178,7 +186,9 @@ def salvar_relatorio_json(historico, melhores_gerais):
             "chance_bomba_min": CHANCE_BOMBA_MIN,
             "chance_bomba_max": CHANCE_BOMBA_MAX,
             "margem_min": MARGEM_MIN,
-            "margem_max": MARGEM_MAX
+            "margem_max": MARGEM_MAX,
+            "cautela_bomba_min": CAUTELA_BOMBA_MIN,
+            "cautela_bomba_max": CAUTELA_BOMBA_MAX
         },
         "historico": historico,
         "melhores_gerais": melhores_gerais
@@ -186,8 +196,6 @@ def salvar_relatorio_json(historico, melhores_gerais):
 
     with open(ARQUIVO_RELATORIO_JSON, "w") as f:
         json.dump(relatorio, f, indent=4)
-
-
 def salvar_relatorio_csv(historico):
     with open(ARQUIVO_RELATORIO_CSV, "w", newline="") as f:
         writer = csv.writer(f)
@@ -200,7 +208,8 @@ def salvar_relatorio_csv(historico):
             "fitness",
             "tempo_fuga",
             "chance_bomba",
-            "margem_seguranca"
+            "margem_seguranca",
+            "cautela_bomba"
         ])
 
         for item in historico:
@@ -214,9 +223,9 @@ def salvar_relatorio_csv(historico):
                 item["fitness"],
                 gene["tempo_fuga"],
                 gene["chance_bomba"],
-                gene["margem_seguranca"]
+                gene["margem_seguranca"],
+                gene["cautela_bomba"]
             ])
-
 
 def gerar_grafico(historico):
     plt.figure(figsize=(10, 6))

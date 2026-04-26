@@ -4,198 +4,216 @@
         "partidas_por_gene": 3,
         "tamanho_populacao": 10,
         "tempo_fuga_min": 15,
-        "tempo_fuga_max": 55,
+        "tempo_fuga_max": 60,
         "chance_bomba_min": 0.08,
-        "chance_bomba_max": 0.35,
+        "chance_bomba_max": 0.4,
         "margem_min": 0,
-        "margem_max": 3
+        "margem_max": 3,
+        "cautela_bomba_min": 0.5,
+        "cautela_bomba_max": 1.8
     },
     "historico": [
         {
             "geracao": 1,
             "jogador": 1,
             "gene": {
-                "tempo_fuga": 52,
-                "chance_bomba": 0.12,
-                "margem_seguranca": 1
+                "tempo_fuga": 35,
+                "chance_bomba": 0.22,
+                "margem_seguranca": 1,
+                "cautela_bomba": 1.29
             },
-            "media_pontos": 7166.666666666667,
+            "media_pontos": 5300.0,
             "vitorias": 2,
-            "fitness": 11166.666666666668
+            "fitness": 9300.0
         },
         {
             "geracao": 1,
             "jogador": 2,
             "gene": {
-                "tempo_fuga": 39,
-                "chance_bomba": 0.27,
-                "margem_seguranca": 2
+                "tempo_fuga": 26,
+                "chance_bomba": 0.17,
+                "margem_seguranca": 0,
+                "cautela_bomba": 1.39
             },
-            "media_pontos": 7200.0,
-            "vitorias": 2,
-            "fitness": 11200.0
+            "media_pontos": 7283.333333333333,
+            "vitorias": 1,
+            "fitness": 9283.333333333332
         },
         {
             "geracao": 1,
             "jogador": 3,
-            "gene": {
-                "tempo_fuga": 21,
-                "chance_bomba": 0.19,
-                "margem_seguranca": 1
-            },
-            "media_pontos": 8233.333333333334,
-            "vitorias": 2,
-            "fitness": 12233.333333333334
-        },
-        {
-            "geracao": 1,
-            "jogador": 4,
             "gene": {
                 "tempo_fuga": 25,
-                "chance_bomba": 0.23,
-                "margem_seguranca": 0
+                "chance_bomba": 0.31,
+                "margem_seguranca": 1,
+                "cautela_bomba": 1.42
             },
-            "media_pontos": 8433.333333333334,
+            "media_pontos": 6433.333333333333,
             "vitorias": 2,
-            "fitness": 12433.333333333334
+            "fitness": 10433.333333333332
         },
         {
-            "geracao": 2,
-            "jogador": 1,
-            "gene": {
-                "tempo_fuga": 33,
-                "chance_bomba": 0.3,
-                "margem_seguranca": 0
-            },
-            "media_pontos": 4966.666666666667,
-            "vitorias": 1,
-            "fitness": 6966.666666666667
-        },
-        {
-            "geracao": 2,
-            "jogador": 2,
-            "gene": {
-                "tempo_fuga": 41,
-                "chance_bomba": 0.12,
-                "margem_seguranca": 0
-            },
-            "media_pontos": 11333.333333333334,
-            "vitorias": 3,
-            "fitness": 17333.333333333336
-        },
-        {
-            "geracao": 2,
-            "jogador": 3,
-            "gene": {
-                "tempo_fuga": 24,
-                "chance_bomba": 0.21,
-                "margem_seguranca": 3
-            },
-            "media_pontos": 11433.333333333334,
-            "vitorias": 3,
-            "fitness": 17433.333333333336
-        },
-        {
-            "geracao": 2,
+            "geracao": 1,
             "jogador": 4,
             "gene": {
-                "tempo_fuga": 40,
-                "chance_bomba": 0.08,
-                "margem_seguranca": 0
+                "tempo_fuga": 45,
+                "chance_bomba": 0.34,
+                "margem_seguranca": 3,
+                "cautela_bomba": 1.03
             },
-            "media_pontos": 3933.3333333333335,
+            "media_pontos": 5200.0,
             "vitorias": 1,
-            "fitness": 5933.333333333334
+            "fitness": 7200.0
         },
         {
-            "geracao": 3,
+            "geracao": 2,
             "jogador": 1,
-            "gene": {
-                "tempo_fuga": 33,
-                "chance_bomba": 0.31,
-                "margem_seguranca": 0
-            },
-            "media_pontos": 8050.0,
-            "vitorias": 2,
-            "fitness": 12050.0
-        },
-        {
-            "geracao": 3,
-            "jogador": 2,
             "gene": {
                 "tempo_fuga": 35,
-                "chance_bomba": 0.14,
-                "margem_seguranca": 1
+                "chance_bomba": 0.22,
+                "margem_seguranca": 1,
+                "cautela_bomba": 1.29
             },
-            "media_pontos": 4516.666666666667,
+            "media_pontos": 5300.0,
             "vitorias": 1,
-            "fitness": 6516.666666666667
+            "fitness": 7300.0
+        },
+        {
+            "geracao": 2,
+            "jogador": 2,
+            "gene": {
+                "tempo_fuga": 36,
+                "chance_bomba": 0.35,
+                "margem_seguranca": 2,
+                "cautela_bomba": 0.51
+            },
+            "media_pontos": 6333.333333333333,
+            "vitorias": 1,
+            "fitness": 8333.333333333332
+        },
+        {
+            "geracao": 2,
+            "jogador": 3,
+            "gene": {
+                "tempo_fuga": 59,
+                "chance_bomba": 0.31,
+                "margem_seguranca": 0,
+                "cautela_bomba": 1.34
+            },
+            "media_pontos": 7100.0,
+            "vitorias": 2,
+            "fitness": 11100.0
+        },
+        {
+            "geracao": 2,
+            "jogador": 4,
+            "gene": {
+                "tempo_fuga": 57,
+                "chance_bomba": 0.1,
+                "margem_seguranca": 1,
+                "cautela_bomba": 1.11
+            },
+            "media_pontos": 5566.666666666667,
+            "vitorias": 1,
+            "fitness": 7566.666666666667
+        },
+        {
+            "geracao": 3,
+            "jogador": 1,
+            "gene": {
+                "tempo_fuga": 50,
+                "chance_bomba": 0.24,
+                "margem_seguranca": 3,
+                "cautela_bomba": 0.62
+            },
+            "media_pontos": 8333.333333333334,
+            "vitorias": 2,
+            "fitness": 12333.333333333334
+        },
+        {
+            "geracao": 3,
+            "jogador": 2,
+            "gene": {
+                "tempo_fuga": 41,
+                "chance_bomba": 0.17,
+                "margem_seguranca": 0,
+                "cautela_bomba": 1.54
+            },
+            "media_pontos": 6700.0,
+            "vitorias": 1,
+            "fitness": 8700.0
         },
         {
             "geracao": 3,
             "jogador": 3,
             "gene": {
-                "tempo_fuga": 39,
-                "chance_bomba": 0.32,
-                "margem_seguranca": 0
+                "tempo_fuga": 45,
+                "chance_bomba": 0.31,
+                "margem_seguranca": 0,
+                "cautela_bomba": 1.34
             },
-            "media_pontos": 8633.333333333334,
-            "vitorias": 2,
-            "fitness": 12633.333333333334
+            "media_pontos": 5066.666666666667,
+            "vitorias": 1,
+            "fitness": 7066.666666666667
         },
         {
             "geracao": 3,
             "jogador": 4,
             "gene": {
-                "tempo_fuga": 41,
-                "chance_bomba": 0.13,
-                "margem_seguranca": 3
+                "tempo_fuga": 20,
+                "chance_bomba": 0.15,
+                "margem_seguranca": 1,
+                "cautela_bomba": 0.97
             },
-            "media_pontos": 7366.666666666667,
+            "media_pontos": 6383.333333333333,
             "vitorias": 2,
-            "fitness": 11366.666666666668
+            "fitness": 10383.333333333332
         }
     ],
     "melhores_gerais": {
         "1": {
             "gene": {
-                "tempo_fuga": 33,
-                "chance_bomba": 0.31,
-                "margem_seguranca": 0
+                "tempo_fuga": 50,
+                "chance_bomba": 0.24,
+                "margem_seguranca": 3,
+                "cautela_bomba": 0.62
             },
-            "media_pontos": 8050.0,
+            "media_pontos": 8333.333333333334,
             "vitorias": 2,
-            "fitness": 12050.0
+            "fitness": 12333.333333333334
         },
         "2": {
             "gene": {
-                "tempo_fuga": 41,
-                "chance_bomba": 0.12,
-                "margem_seguranca": 0
+                "tempo_fuga": 26,
+                "chance_bomba": 0.17,
+                "margem_seguranca": 0,
+                "cautela_bomba": 1.39
             },
-            "media_pontos": 11333.333333333334,
-            "vitorias": 3,
-            "fitness": 17333.333333333336
+            "media_pontos": 7283.333333333333,
+            "vitorias": 1,
+            "fitness": 9283.333333333332
         },
         "3": {
             "gene": {
-                "tempo_fuga": 24,
-                "chance_bomba": 0.21,
-                "margem_seguranca": 3
+                "tempo_fuga": 59,
+                "chance_bomba": 0.31,
+                "margem_seguranca": 0,
+                "cautela_bomba": 1.34
             },
-            "media_pontos": 11433.333333333334,
-            "vitorias": 3,
-            "fitness": 17433.333333333336
+            "media_pontos": 7100.0,
+            "vitorias": 2,
+            "fitness": 11100.0
         },
         "4": {
             "gene": {
-                "tempo_fuga": 25,
-                "chance_bomba": 0.23,
-                "margem_seguranca": 0
+                "tempo_fuga": 20,
+                "chance_bomba": 0.15,
+                "margem_seguranca": 1,
+                "cautela_bomba": 0.97
             },
-            "media_pontos": 8433.333333333334,
+            "media_pontos": 6383.333333333333,
             "vitorias": 2,
-            "fitness": 12433.333333333334
+            "fitness": 10383.333333333332
         }
     }
 }
