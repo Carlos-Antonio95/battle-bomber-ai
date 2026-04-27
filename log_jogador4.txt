@@ -78,3 +78,4 @@ Jogo 80: Recompensa acumulada 18059.79, Acoes 1762
 Jogo 81: Recompensa acumulada 23408.75, Acoes 2008
 Jogo 82: Recompensa acumulada 21009.51, Acoes 2004
 Jogo 83: Recompensa acumulada 5114.14, Acoes 551
+Jogo 84: Recompensa acumulada 8572.85, Acoes 893
