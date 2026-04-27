@@ -1,14 +1,14 @@
 {
-    "tempo_fuga": 45,
-    "chance_bomba": 0.18,
-    "margem_seguranca": 3,
-    "cautela_bomba": 1.9,
-    "chance_ataque": 0.32,
-    "distancia_perseguir": 4,
+    "tempo_fuga": 10,
+    "chance_bomba": 0.36,
+    "margem_seguranca": 1,
+    "cautela_bomba": 0.66,
+    "chance_ataque": 0.42,
+    "distancia_perseguir": 7,
     "distancia_bloqueio": 5,
-    "chance_bloqueio": 0.35,
-    "tempo_perigo_iminente": 1.05,
-    "max_passos_fuga": 10,
-    "margem_tempo_base": 0.50,
-    "persistencia_movimento": 2
+    "chance_bloqueio": 0.37,
+    "tempo_perigo_iminente": 0.91,
+    "max_passos_fuga": 9,
+    "margem_tempo_base": 0.5,
+    "persistencia_movimento": 1
 }
