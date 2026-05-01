@@ -1,0 +1,50 @@
+{
+    "0|0|0|0|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 9.5647,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.1981
+    },
+    "0|0|1|0|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 9.5059,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 9.5449
+    },
+    "0|0|1|0|0|0|0|1": {
+        "atacar": -1.9335,
+        "esperar": -1.7429,
+        "farmar": -1.8108,
+        "fugir": 0.0145,
+        "pegar_powerup": -1.9513,
+        "reposicionar": -1.8604
+    },
+    "0|0|1|0|0|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": -0.891,
+        "fugir": 0.0,
+        "pegar_powerup": -0.81,
+        "reposicionar": 0.0
+    },
+    "1|0|0|0|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 12.3188,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|0|0|0|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 1.5004,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    }
+}

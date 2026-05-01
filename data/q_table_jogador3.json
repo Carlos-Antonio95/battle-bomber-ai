@@ -1,0 +1,66 @@
+{
+    "0|0|0|0|0|0|0|0": {
+        "atacar": 9.5896,
+        "esperar": 9.3411,
+        "farmar": 11.9984,
+        "fugir": 9.4903,
+        "pegar_powerup": 8.6685,
+        "reposicionar": 11.8699
+    },
+    "0|0|1|0|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.948,
+        "farmar": 10.4875,
+        "fugir": 0.0,
+        "pegar_powerup": 1.0614,
+        "reposicionar": 12.0236
+    },
+    "0|0|1|0|0|1|0|0": {
+        "atacar": 1.8869,
+        "esperar": 1.5231,
+        "farmar": 11.1487,
+        "fugir": 9.3018,
+        "pegar_powerup": -2.2628,
+        "reposicionar": 10.1155
+    },
+    "0|1|0|0|0|0|0|0": {
+        "atacar": 0.3853,
+        "esperar": 0.0,
+        "farmar": 2.3004,
+        "fugir": 0.3791,
+        "pegar_powerup": 13.0757,
+        "reposicionar": 5.5275
+    },
+    "0|1|1|0|0|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 5.1358,
+        "reposicionar": 0.0
+    },
+    "1|0|0|0|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 31.1393,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|0|0|0|0|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 5.7697,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|0|0|0|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 25.9407,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    }
+}
