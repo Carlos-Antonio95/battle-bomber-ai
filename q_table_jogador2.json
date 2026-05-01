@@ -1,0 +1,186 @@
+{
+    "0|0|0|0|0|1": {
+        "atacar": -1.5485,
+        "buscar_powerup": -1.4,
+        "esperar": -2.0306,
+        "fugir": -6.2171,
+        "plantar_bomba": -0.7114,
+        "quebrar_parede": -2.6332
+    },
+    "0|0|0|0|1|1": {
+        "atacar": 0.7487,
+        "buscar_powerup": 0.6157,
+        "esperar": 0.0,
+        "fugir": 4.0298,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "0|0|0|1|0|1": {
+        "atacar": -14.4033,
+        "buscar_powerup": -20.218,
+        "esperar": -19.8701,
+        "fugir": 13.9569,
+        "plantar_bomba": -20.0865,
+        "quebrar_parede": -20.2515
+    },
+    "0|0|1|0|0|0": {
+        "atacar": 2.177,
+        "buscar_powerup": 0.0,
+        "esperar": -0.1295,
+        "fugir": 0.0,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 3.0282
+    },
+    "0|0|1|0|0|1": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.7383,
+        "esperar": 0.0,
+        "fugir": 2.1223,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "0|0|1|0|1|0": {
+        "atacar": 6.9919,
+        "buscar_powerup": 0.0,
+        "esperar": 1.152,
+        "fugir": 0.8091,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "0|0|1|0|1|1": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.0,
+        "esperar": 0.0,
+        "fugir": 2.7966,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "0|0|1|1|0|0": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.0,
+        "esperar": 0.0,
+        "fugir": 0.0,
+        "plantar_bomba": -1.6937,
+        "quebrar_parede": 0.0
+    },
+    "0|0|1|1|0|1": {
+        "atacar": -0.9909,
+        "buscar_powerup": -3.4883,
+        "esperar": -2.2493,
+        "fugir": -2.7317,
+        "plantar_bomba": -0.4119,
+        "quebrar_parede": -1.7352
+    },
+    "0|0|1|1|1|0": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.7614,
+        "esperar": 0.0,
+        "fugir": 0.0,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "0|0|1|1|1|1": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.0,
+        "esperar": 0.0,
+        "fugir": 0.0,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": -1.8
+    },
+    "0|1|0|0|0|1": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.0,
+        "esperar": 0.0,
+        "fugir": -1.5316,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "0|1|1|0|0|0": {
+        "atacar": -1.6112,
+        "buscar_powerup": 0.0,
+        "esperar": 0.0,
+        "fugir": 0.0,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "0|1|1|0|0|1": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.8329,
+        "esperar": 0.0,
+        "fugir": 0.0,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "0|1|1|1|0|1": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.2,
+        "esperar": 0.0,
+        "fugir": 0.0,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "1|0|0|0|0|1": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.0,
+        "esperar": 0.0,
+        "fugir": 30.1849,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "1|0|0|0|1|1": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.0,
+        "esperar": 0.0,
+        "fugir": 4.2,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "1|0|0|1|0|1": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.0,
+        "esperar": 0.0,
+        "fugir": 6.331,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "1|0|0|1|1|1": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.0,
+        "esperar": 0.0,
+        "fugir": 0.2,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "1|0|1|0|0|1": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.0,
+        "esperar": 0.0,
+        "fugir": 6.7285,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "1|0|1|0|1|0": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.0,
+        "esperar": 0.0,
+        "fugir": 4.2,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "1|1|0|0|0|1": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.0,
+        "esperar": 0.0,
+        "fugir": 4.1028,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    },
+    "1|1|0|1|0|1": {
+        "atacar": 0.0,
+        "buscar_powerup": 0.0,
+        "esperar": 0.0,
+        "fugir": 0.2,
+        "plantar_bomba": 0.0,
+        "quebrar_parede": 0.0
+    }
+}

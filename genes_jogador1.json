@@ -1,12 +1,9 @@
 {
     "tempo_fuga": 10,
-    "chance_bomba": 0.36,
     "margem_seguranca": 1,
     "cautela_bomba": 0.66,
-    "chance_ataque": 0.42,
     "distancia_perseguir": 7,
     "distancia_bloqueio": 5,
-    "chance_bloqueio": 0.37,
     "tempo_perigo_iminente": 0.91,
     "max_passos_fuga": 9,
     "margem_tempo_base": 0.5,

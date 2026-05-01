@@ -1,13 +1,10 @@
 {
     "gene": {
         "tempo_fuga": 63,
-        "chance_bomba": 0.13,
         "margem_seguranca": 3,
         "cautela_bomba": 1.12,
-        "chance_ataque": 0.3,
         "distancia_perseguir": 5,
         "distancia_bloqueio": 7,
-        "chance_bloqueio": 0.32,
         "tempo_perigo_iminente": 0.7,
         "max_passos_fuga": 12,
         "margem_tempo_base": 0.33,

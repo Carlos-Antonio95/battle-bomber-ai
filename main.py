@@ -475,6 +475,7 @@ tempo_vivo = [0, 0, 0, 0, 0]
 bombas_colocadas = [0, 0, 0, 0, 0]
 kills = [0, 0, 0, 0, 0]
 mortes = [0, 0, 0, 0, 0]
+suicidios = [0, 0, 0, 0, 0]
 
 clock = pygame.time.Clock()
 fullscreen = False
@@ -580,6 +581,7 @@ while True:
                                 pontos[idx_dono] -= PONTOS_MATAR_JOGADOR
                                 if pontos[idx_dono] < 0:
                                     pontos[idx_dono] = 0
+                                suicidios[idx_dono] += 1
 
                                 print(f"SUICÍDIO -> jogador: {idx_morto}")
                             else:
@@ -621,13 +623,24 @@ while True:
     if vencedor_final is not None:
 
         if MODO_TREINO and not resultado_salvo:
+            q_learning_recompensas = []
+            for i in range(1, len(players) + 1):
+                arquivo_stats = f"q_stats_jogador{i}.json"
+                if os.path.exists(arquivo_stats):
+                    with open(arquivo_stats, "r") as f:
+                        q_learning_recompensas.append(json.load(f).get("recompensa_total", 0))
+                else:
+                    q_learning_recompensas.append(0)
+
             resultado = {
             "pontos": pontos,
             "vencedor": vencedor_final,
             "tempo_vivo": tempo_vivo,
             "bombas_colocadas": bombas_colocadas,
             "kills": kills,
-            "mortes": mortes
+            "mortes": mortes,
+            "suicidios": suicidios,
+            "q_learning_recompensas": q_learning_recompensas
             }
 
             with open("resultado_treino.json", "w") as f:
