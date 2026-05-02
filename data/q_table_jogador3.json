@@ -1,49 +1,377 @@
 {
     "0|0|0|0|0|0|0|0": {
-        "atacar": 9.5896,
-        "esperar": 9.3411,
-        "farmar": 11.9984,
-        "fugir": 9.4903,
-        "pegar_powerup": 8.6685,
-        "reposicionar": 11.8699
+        "atacar": 1190.0444,
+        "esperar": 1140.2002,
+        "farmar": 937.3415,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1178.4951
+    },
+    "0|0|0|0|0|0|0|1": {
+        "atacar": 376.0091,
+        "esperar": 1111.6431,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1136.3279
+    },
+    "0|0|0|0|1|0|0|0": {
+        "atacar": 1157.8362,
+        "esperar": 1160.1981,
+        "farmar": 1111.8588,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1181.8499
+    },
+    "0|0|0|0|1|0|0|1": {
+        "atacar": 369.9732,
+        "esperar": 1058.019,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1014.6721
+    },
+    "0|0|0|0|1|0|1|0": {
+        "atacar": 1133.162,
+        "esperar": 0.0,
+        "farmar": 1156.733,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1172.8114
+    },
+    "0|0|0|1|0|0|0|0": {
+        "atacar": 1171.8601,
+        "esperar": 1152.7815,
+        "farmar": 1103.3599,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1162.1734
+    },
+    "0|0|0|1|0|0|0|1": {
+        "atacar": 1021.5095,
+        "esperar": 1103.484,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1130.5106
+    },
+    "0|0|0|1|0|0|1|0": {
+        "atacar": 1158.1286,
+        "esperar": 0.0,
+        "farmar": 1059.2907,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1174.5087
+    },
+    "0|0|0|1|1|0|0|0": {
+        "atacar": 1138.9101,
+        "esperar": 1051.9292,
+        "farmar": 973.2399,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1050.3983
+    },
+    "0|0|0|1|1|0|0|1": {
+        "atacar": 1122.1749,
+        "esperar": 1118.6691,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1137.9711
+    },
+    "0|0|0|1|1|0|1|0": {
+        "atacar": 1104.9873,
+        "esperar": 0.0,
+        "farmar": 1042.4554,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1120.0039
     },
     "0|0|1|0|0|0|0|0": {
         "atacar": 0.0,
-        "esperar": 0.948,
-        "farmar": 10.4875,
+        "esperar": 1043.4653,
+        "farmar": 1086.2052,
         "fugir": 0.0,
-        "pegar_powerup": 1.0614,
-        "reposicionar": 12.0236
+        "pegar_powerup": 0.0,
+        "reposicionar": 1071.5888
+    },
+    "0|0|1|0|0|0|0|1": {
+        "atacar": 0.0,
+        "esperar": 958.8732,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 875.301
     },
     "0|0|1|0|0|1|0|0": {
-        "atacar": 1.8869,
-        "esperar": 1.5231,
-        "farmar": 11.1487,
-        "fugir": 9.3018,
-        "pegar_powerup": -2.2628,
-        "reposicionar": 10.1155
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 611.5256,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "0|0|1|0|0|1|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 944.3809,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1000.4161
+    },
+    "0|0|1|0|1|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 1066.7851,
+        "farmar": 1148.2444,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 473.8102
+    },
+    "0|0|1|0|1|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 494.6273,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "0|0|1|0|1|1|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 164.4944,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 56.1189
+    },
+    "0|0|1|0|1|1|1|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 717.4723,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "0|0|1|1|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 1059.2726,
+        "farmar": 1087.297,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1089.6543
+    },
+    "0|0|1|1|0|0|0|1": {
+        "atacar": 0.0,
+        "esperar": 674.4507,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 142.1252
+    },
+    "0|0|1|1|0|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 747.0918,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "0|0|1|1|0|1|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 705.3665,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 604.691
+    },
+    "0|0|1|1|0|1|1|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 803.7134,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "0|0|1|1|1|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 1049.9963,
+        "farmar": 1031.6768,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 1052.4358
+    },
+    "0|0|1|1|1|0|0|1": {
+        "atacar": 0.0,
+        "esperar": 981.0387,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 802.5545
+    },
+    "0|0|1|1|1|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 960.3052,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "0|0|1|1|1|1|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 980.4998,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 759.4338
+    },
+    "0|0|1|1|1|1|1|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 1088.3178,
+        "fugir": 0.0,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
     },
     "0|1|0|0|0|0|0|0": {
-        "atacar": 0.3853,
+        "atacar": 461.6288,
         "esperar": 0.0,
-        "farmar": 2.3004,
-        "fugir": 0.3791,
-        "pegar_powerup": 13.0757,
-        "reposicionar": 5.5275
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 977.9885,
+        "reposicionar": 0.0
+    },
+    "0|1|0|0|1|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 731.0121,
+        "reposicionar": 0.0
+    },
+    "0|1|0|0|1|0|1|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 955.5364,
+        "reposicionar": 0.0
+    },
+    "0|1|0|1|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 997.5279,
+        "reposicionar": 0.0
+    },
+    "0|1|0|1|0|0|1|0": {
+        "atacar": 111.4745,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 1074.1135,
+        "reposicionar": 0.0
+    },
+    "0|1|0|1|1|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 1126.8404,
+        "reposicionar": 0.0
+    },
+    "0|1|0|1|1|0|1|0": {
+        "atacar": 454.1726,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 1108.2584,
+        "reposicionar": 0.0
+    },
+    "0|1|1|0|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 877.0545,
+        "reposicionar": 0.0
     },
     "0|1|1|0|0|1|0|0": {
         "atacar": 0.0,
         "esperar": 0.0,
         "farmar": 0.0,
         "fugir": 0.0,
-        "pegar_powerup": 5.1358,
+        "pegar_powerup": 897.7149,
+        "reposicionar": 0.0
+    },
+    "0|1|1|0|1|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 363.9921,
+        "reposicionar": 0.0
+    },
+    "0|1|1|0|1|1|1|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 729.6325,
+        "reposicionar": 0.0
+    },
+    "0|1|1|1|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 89.5646,
+        "reposicionar": 0.0
+    },
+    "0|1|1|1|0|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 856.9327,
+        "reposicionar": 0.0
+    },
+    "0|1|1|1|0|1|1|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 718.6492,
+        "reposicionar": 0.0
+    },
+    "0|1|1|1|1|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 930.3304,
+        "reposicionar": 0.0
+    },
+    "0|1|1|1|1|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 1111.9423,
+        "reposicionar": 0.0
+    },
+    "0|1|1|1|1|1|1|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 0.0,
+        "pegar_powerup": 1142.191,
         "reposicionar": 0.0
     },
     "1|0|0|0|0|0|0|0": {
         "atacar": 0.0,
         "esperar": 0.0,
         "farmar": 0.0,
-        "fugir": 31.1393,
+        "fugir": 1131.7889,
         "pegar_powerup": 0.0,
         "reposicionar": 0.0
     },
@@ -51,7 +379,63 @@
         "atacar": 0.0,
         "esperar": 0.0,
         "farmar": 0.0,
-        "fugir": 5.7697,
+        "fugir": 1107.1446,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|0|0|1|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 1168.9446,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|0|0|1|0|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 1106.345,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|0|1|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 1154.8506,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|0|1|0|0|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 1033.8989,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|0|1|1|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 1092.8087,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|0|1|1|0|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 1093.689,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|0|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 1172.0166,
         "pegar_powerup": 0.0,
         "reposicionar": 0.0
     },
@@ -59,7 +443,175 @@
         "atacar": 0.0,
         "esperar": 0.0,
         "farmar": 0.0,
-        "fugir": 25.9407,
+        "fugir": 630.3501,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|0|0|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 1164.9358,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|0|0|1|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 291.7474,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|0|1|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 191.6555,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|0|1|0|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 105.3797,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|0|1|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 907.7596,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|1|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 310.1588,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|1|0|0|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 668.9795,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|1|0|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 690.3402,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|1|0|1|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 111.3945,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|1|1|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 1133.315,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|1|1|0|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 924.3841,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|1|1|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 1159.3071,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|0|1|1|1|1|0|1": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 291.9632,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|1|0|0|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 876.7741,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|1|0|0|1|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 421.2632,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|1|0|1|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 436.8616,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|1|0|1|1|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 988.6392,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|1|1|0|0|0|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 86.1067,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|1|1|0|0|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 90.8394,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|1|1|1|0|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 93.3889,
+        "pegar_powerup": 0.0,
+        "reposicionar": 0.0
+    },
+    "1|1|1|1|1|1|0|0": {
+        "atacar": 0.0,
+        "esperar": 0.0,
+        "farmar": 0.0,
+        "fugir": 281.1439,
         "pegar_powerup": 0.0,
         "reposicionar": 0.0
     }
