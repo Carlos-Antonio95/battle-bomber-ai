@@ -1033,8 +1033,110 @@ def escolher_movimento_defensivo(player, mapa, bombas):
     melhores = [acao for score, acao in opcoes if score == melhor_score]
     return random.choice(melhores)
 
+def menor_distancia_bfs_de_posicao(origem_x, origem_y, alvo_x, alvo_y, mapa, bombas, limite=12):
+    fila = deque()
+    visitados = set()
 
-def escolher_movimento_seguro(player, mapa, bombas, memoria=None):
+    fila.append((origem_x, origem_y, 0))
+    visitados.add((origem_x, origem_y))
+
+    while fila:
+        x, y, dist = fila.popleft()
+
+        if dist > limite:
+            continue
+
+        if (x, y) == (alvo_x, alvo_y):
+            return dist
+
+        for _, dx, dy in DIRECOES:
+            nx = x + dx
+            ny = y + dy
+
+            if (nx, ny) in visitados:
+                continue
+
+            if not posicao_livre(nx, ny, mapa, bombas):
+                continue
+
+            if posicao_em_fogo(nx, ny, bombas):
+                continue
+
+            visitados.add((nx, ny))
+            fila.append((nx, ny, dist + 1))
+
+    return None
+
+
+def saidas_seguras_da_posicao(x, y, mapa, bombas):
+    saidas = []
+
+    for _, dx, dy in DIRECOES:
+        sx = x + dx
+        sy = y + dy
+
+        if posicao_segura(sx, sy, bombas, mapa):
+            saidas.append((sx, sy))
+
+    return saidas
+
+
+def risco_de_emboscada_em_beco(player, destino_x, destino_y, mapa, bombas, inimigos):
+    saidas = saidas_seguras_da_posicao(destino_x, destino_y, mapa, bombas)
+
+    if len(saidas) != 1:
+        return False
+
+    saida_x, saida_y = saidas[0]
+
+    passos_player_saida = menor_distancia_bfs_de_posicao(
+        destino_x,
+        destino_y,
+        saida_x,
+        saida_y,
+        mapa,
+        bombas,
+        limite=4
+    )
+
+    if passos_player_saida is None:
+        return True
+
+    tempo_player_sair = passos_player_saida * TEMPO_MOVIMENTO_ESTIMADO
+
+    for inimigo in inimigos_ativos(player, inimigos):
+        if distancia_manhattan(player, inimigo) > 7:
+            continue
+
+        passos_inimigo_saida = menor_distancia_bfs_de_posicao(
+            inimigo.grid_x,
+            inimigo.grid_y,
+            saida_x,
+            saida_y,
+            mapa,
+            bombas,
+            limite=10
+        )
+
+        if passos_inimigo_saida is None:
+            continue
+
+        tempo_inimigo_chegar = passos_inimigo_saida * TEMPO_MOVIMENTO_ESTIMADO
+
+        pode_plantar_bomba_na_saida = pode_colocar_mais_bomba(inimigo, bombas)
+
+        if pode_plantar_bomba_na_saida:
+            tempo_para_trancar = tempo_inimigo_chegar + TEMPO_MOVIMENTO_ESTIMADO
+        else:
+            tempo_para_trancar = tempo_inimigo_chegar
+
+        if tempo_para_trancar <= tempo_player_sair + MARGEM_TEMPO_FUGA:
+            return True
+
+    return False
+
+
+def escolher_movimento_seguro(player, mapa, bombas, memoria=None, inimigos=None):
     opcoes = []
     ultima_acao = memoria.get("ultima_acao") if memoria else None
 
@@ -1046,10 +1148,16 @@ def escolher_movimento_seguro(player, mapa, bombas, memoria=None):
             continue
 
         score = pontuar_posicao_defensiva(nx, ny, bombas, mapa)
+        saidas = contar_saidas_seguras(nx, ny, mapa, bombas)
+
         if acao == acao_oposta(ultima_acao):
             score -= 4
-        if contar_saidas_seguras(nx, ny, mapa, bombas) <= 1:
+
+        if saidas <= 1:
             score -= 8
+
+            if inimigos and risco_de_emboscada_em_beco(player, nx, ny, mapa, bombas, inimigos):
+                score -= 70
 
         opcoes.append((score, acao))
 
@@ -1060,7 +1168,6 @@ def escolher_movimento_seguro(player, mapa, bombas, memoria=None):
     melhor_score = opcoes[0][0]
     melhores = [acao for score, acao in opcoes if score == melhor_score]
     return random.choice(melhores)
-
 
 def tem_movimento_seguro(player, mapa, bombas):
     for _, dx, dy in DIRECOES:
@@ -1375,10 +1482,10 @@ def executar_acao_macro(acao_macro, player, mapa, bombas, inimigos, memoria, num
         if pode_plantar_bomba_farm_seguro(player, mapa, bombas, numero_jogador):
             memoria["fugindo"] = True
             return "bomba"
-        return buscar_parede_destrutivel(player, mapa, bombas) or escolher_movimento_seguro(player, mapa, bombas, memoria)
+        return buscar_parede_destrutivel(player, mapa, bombas) or escolher_movimento_seguro(player, mapa, bombas, memoria, inimigos)
 
     if acao_macro == "reposicionar":
-        return escolher_movimento_seguro(player, mapa, bombas, memoria)
+        return escolher_movimento_seguro(player, mapa, bombas, memoria, inimigos)
 
     if acao_macro == "esperar":
         if (
@@ -1606,7 +1713,7 @@ def criar_decisor_bfs(numero_jogador):
         )
 
         if acao is None:
-            acao = escolher_movimento_seguro(player, mapa, bombas, memoria)
+            acao = escolher_movimento_seguro(player, mapa, bombas, memoria, inimigos)
 
         registrar_decisao_q(memoria, estado_atual, acao_macro)
 
