@@ -11,3 +11,5 @@ Jogo 12: Recompensa acumulada 46415.71, Acoes 4212
 Jogo 13: Recompensa acumulada 71339.81, Acoes 6469
 Jogo 14: Recompensa acumulada 2383.74, Acoes 266
 Jogo 15: Recompensa acumulada 1078.06, Acoes 120
+Jogo 16: Recompensa acumulada 20102.98, Acoes 1379
+Jogo 17: Recompensa acumulada 2314.24, Acoes 252
